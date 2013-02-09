@@ -22,8 +22,7 @@ public class RightDriveMotorStop extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        rightDriveMotor.disable();
-        rightDriveMotor.getMotor().set(0);
+        rightDriveMotor.off();
         //leftDriveMotor.reset();
     }
 
