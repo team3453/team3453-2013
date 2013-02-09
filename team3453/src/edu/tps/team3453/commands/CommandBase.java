@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.tps.team3453.OI;
 import edu.tps.team3453.subsystems.LeftDriveMotor;
 import edu.tps.team3453.subsystems.RightDriveMotor;
+import edu.tps.team3453.subsystems.Lid;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -18,6 +19,7 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems
     public static LeftDriveMotor leftDriveMotor = new LeftDriveMotor();
     public static RightDriveMotor rightDriveMotor = new RightDriveMotor();
+    public static Lid lid = new Lid();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely

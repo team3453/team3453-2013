@@ -19,7 +19,12 @@ public class RobotMap {
     public static final int leftDriveEncoderA = 7;
     public static final int leftDriveEncoderB = 8;
     public static final int rightDriveEncoderA = 5;
-    public static final int rightDriveEncoderB = 6;    
+    public static final int rightDriveEncoderB = 6;
+    
+    public static final int lid = 1;
+    
+    public static final int closeLidLimitSwitch = 1;
+    public static final int openLidLimitSwitch = 2;
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;
