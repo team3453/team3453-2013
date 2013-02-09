@@ -6,6 +6,7 @@ import edu.tps.team3453.OI;
 import edu.tps.team3453.subsystems.LeftDriveMotor;
 import edu.tps.team3453.subsystems.RightDriveMotor;
 import edu.tps.team3453.subsystems.Lid;
+import edu.tps.team3453.subsystems.DumperArm;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -17,9 +18,10 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems
-    public static LeftDriveMotor leftDriveMotor = new LeftDriveMotor();
-    public static RightDriveMotor rightDriveMotor = new RightDriveMotor();
-    public static Lid lid = new Lid();
+    public static final LeftDriveMotor leftDriveMotor = new LeftDriveMotor();
+    public static final RightDriveMotor rightDriveMotor = new RightDriveMotor();
+    public static final Lid lid = new Lid();
+    public static final DumperArm dumperArm = new DumperArm();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
