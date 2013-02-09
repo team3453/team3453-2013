@@ -6,15 +6,14 @@ package edu.tps.team3453.commands;
 
 /**
  *
- * @author digimo
+ * @author Madeline
  */
-public class RightDriveMotorStop extends CommandBase {
+public class LidStop extends CommandBase {
     
-    public RightDriveMotorStop() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-        requires(rightDriveMotor);
+    public LidStop() {
+        requires(lid);
     }
+        //stop at limit swit
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -22,8 +21,7 @@ public class RightDriveMotorStop extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        rightDriveMotor.off();
-        //leftDriveMotor.reset();
+        lid.Stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
