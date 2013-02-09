@@ -72,6 +72,15 @@ public class LeftDriveMotor extends PIDSubsystem {
         leftMotor.set(output);
     }
     
+    public void off() {
+        disable();
+        leftMotor.set(0);
+    }
+
+    public void powerOn(double power) {
+        leftMotor.set(power);
+    }
+    
     public SpeedController getMotor() {
         return leftMotor;
     }
