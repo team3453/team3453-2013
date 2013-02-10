@@ -1,15 +1,66 @@
 
 package edu.tps.team3453;
 
+import edu.tps.team3453.commands.DumperArmBack;
+import edu.tps.team3453.commands.DumperArmForward;
+import edu.tps.team3453.commands.LidClose;
+import edu.tps.team3453.commands.LidOpen;
+import edu.tps.team3453.commands.CameraPyramidApproach;
+import edu.tps.team3453.commands.SolenoidLock;
+import edu.tps.team3453.commands.SolenoidUnlock;
+import edu.tps.team3453.commands.CameraWhileOnPyramid;
+import edu.tps.team3453.commands.ArmPull;
+import edu.tps.team3453.commands.ArmReach;
+import edu.tps.team3453.commands.ClimberChassisBackward;
+import edu.tps.team3453.commands.ClimberChassisForward;
+import edu.tps.team3453.commands.RearWheelExtend;
+import edu.tps.team3453.commands.RearWheelRetract;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+    public Joystick joystick = new Joystick(1);
+    public Joystick joystick2 = new Joystick(2);
+    Button b1 = new JoystickButton (joystick, 1);
+    Button b2 = new JoystickButton (joystick, 2);
+    Button b3 = new JoystickButton (joystick, 3);
+    Button b4 = new JoystickButton (joystick, 4);
+    Button b5 = new JoystickButton (joystick, 5);
+    Button b6 = new JoystickButton (joystick, 6);
+    Button b7 = new JoystickButton (joystick, 7);
+    Button b8 = new JoystickButton (joystick, 8);
+    Button b9 = new JoystickButton (joystick, 9);
+    Button b10 = new JoystickButton (joystick, 10);
+    Button b11 = new JoystickButton (joystick, 11);
+    Button joystick2b2 = new JoystickButton (joystick2, 2);
+    Button joystick2b3 = new JoystickButton (joystick2, 3);
+    Button joystick2b6 = new JoystickButton (joystick,6);
+    Button joystick2b7 = new JoystickButton (joystick2, 7);
+    public OI(){
+        b3.whenPressed(new ArmReach());
+        b2.whenPressed(new ArmPull());
+        b6.whenPressed(new DumperArmForward());
+        b7.whenPressed(new DumperArmBack());
+        b8.whenPressed(new CameraPyramidApproach());
+        b9.whenPressed(new CameraWhileOnPyramid());
+        b10.whenPressed(new LidClose());
+        b11.whenPressed(new LidOpen());
+        //joystick2b2.whenPressed(new SolenoidLock());
+        //joystick2b3.whenPressed(new SolenoidUnlock());
+        joystick2b3.whenPressed(new ClimberChassisForward());
+        joystick2b3.whenPressed(new ClimberChassisBackward());
+        joystick2b6.whenPressed(new RearWheelExtend());
+        joystick2b7.whenPressed(new RearWheelRetract());
+    }
+    
     //// CREATING BUTTONS
+    
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
     // number it is.
