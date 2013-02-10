@@ -27,8 +27,14 @@ public class RobotMap {
     public static final int openLidLimitSwitch = 2;
     
     public static final int dumperArmMotor = 1;
-    
-    
+    public static final int panServoInput = 4;
+    public static final int tiltServoInput = 5;
+    public static final int rightArm = 6;
+    public static final int leftArm = 7;
+    public static final int rightSolenoid = 8;
+    public static final int leftSolenoid = 9;
+    public static final int climberChassis = 10;
+    public static final int rearWheel = 11;
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;

@@ -9,25 +9,26 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.tps.team3453.RobotMap;
 import edu.tps.team3453.commands.DumperArmDoNothing;
+import edu.wpi.first.wpilibj.Relay;
 
 /**
  *
  * @author Madeline
  */
 public class DumperArm extends Subsystem {
-    private static final SpeedController dumperArmMotor = new Victor(RobotMap.dumperArmMotor);
+    private static final Relay dumperArmMotor = new Relay(RobotMap.dumperArmMotor);
     
 
     public void initDefaultCommand() {
         setDefaultCommand(new DumperArmDoNothing());
     }
     public void Up(){
-        dumperArmMotor.set(1);
+        dumperArmMotor.set(Relay.Value.kReverse);
     }
     public void Down(){
-        dumperArmMotor.set(-1);
+        dumperArmMotor.set(Relay.Value.kForward);
     }
     public void Stop() {
-        dumperArmMotor.set(0.0);
+        dumperArmMotor.set(Relay.Value.kOff);
     }    
 }
