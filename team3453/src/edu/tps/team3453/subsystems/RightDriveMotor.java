@@ -72,6 +72,15 @@ public class RightDriveMotor extends PIDSubsystem {
         rightMotor.set(output);
     }
     
+    public void off() {
+        disable();
+        rightMotor.set(0);
+    }
+
+    public void powerOn(double power) {
+        rightMotor.set(power);
+    }
+    
     public SpeedController getMotor() {
         return rightMotor;
     }

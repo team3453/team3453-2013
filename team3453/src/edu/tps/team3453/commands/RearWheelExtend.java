@@ -6,14 +6,14 @@ package edu.tps.team3453.commands;
 
 /**
  *
- * @author digimo
+ * @author Madeline
  */
-public class RightDriveMotorStop extends CommandBase {
+public class RearWheelExtend extends CommandBase {
     
-    public RightDriveMotorStop() {
+    public RearWheelExtend() {
+        requires(rearWheel);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(rightDriveMotor);
     }
 
     // Called just before this Command runs the first time
@@ -22,8 +22,7 @@ public class RightDriveMotorStop extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        rightDriveMotor.off();
-        //leftDriveMotor.reset();
+        rearWheel.extend();
     }
 
     // Make this return true when this Command no longer needs to run execute()

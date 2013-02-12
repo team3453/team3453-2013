@@ -3,8 +3,18 @@ package edu.tps.team3453.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.tps.team3453.OI;
+import edu.tps.team3453.subsystems.ClimberChassis;
 import edu.tps.team3453.subsystems.LeftDriveMotor;
 import edu.tps.team3453.subsystems.RightDriveMotor;
+import edu.tps.team3453.subsystems.Lid;
+import edu.tps.team3453.subsystems.DumperArm;
+import edu.tps.team3453.subsystems.LeftArm;
+import edu.tps.team3453.subsystems.LeftSolenoid;
+import edu.tps.team3453.subsystems.PanServo;
+import edu.tps.team3453.subsystems.RearWheel;
+import edu.tps.team3453.subsystems.RightArm;
+import edu.tps.team3453.subsystems.RightSolenoid;
+import edu.tps.team3453.subsystems.TiltServo;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -16,9 +26,19 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems
-    public static LeftDriveMotor leftDriveMotor = new LeftDriveMotor();
-    public static RightDriveMotor rightDriveMotor = new RightDriveMotor();
-
+    public static final LeftDriveMotor leftDriveMotor = new LeftDriveMotor();
+    public static final RightDriveMotor rightDriveMotor = new RightDriveMotor();
+    public static final Lid lid = new Lid();
+    public static final DumperArm dumperArm = new DumperArm();
+    public static final TiltServo tiltServo = new TiltServo();
+    public static final PanServo panServo = new PanServo();
+    public static final LeftArm leftArm = new LeftArm();
+    public static final RightArm rightArm = new RightArm();
+    public static final LeftSolenoid leftSolenoid = new LeftSolenoid();
+    public static final RightSolenoid rightSolenoid = new RightSolenoid();
+    public static final ClimberChassis climberChassis = new ClimberChassis();
+    public static final RearWheel rearWheel = new RearWheel();
+    
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
