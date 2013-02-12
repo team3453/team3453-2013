@@ -7,6 +7,7 @@ package edu.tps.team3453.subsystems;
 import edu.tps.team3453.RobotMap;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -25,9 +26,20 @@ Servo servo = new Servo(RobotMap.tiltServoInput);
         servo.set(0);
     }
     public void tiltServoWhileOn(){
+        SmartDashboard.putNumber("TiltServoDegrees", servo.getAngle());
         servo.set(1);
     }
     public void tiltServoApproach(){
+        SmartDashboard.putNumber("TiltServoDegrees", servo.getAngle());
         servo.set(1);
+    }
+    
+    public void tiltServoClockwise() {
+        servo.setAngle(servo.getAngle() + 2.0);
+        SmartDashboard.putNumber("TiltServoDegrees", servo.getAngle());
+    }
+    public void tiltServoCounterclockwise() {
+        servo.setAngle(servo.getAngle() -2.0);
+        SmartDashboard.putNumber("TiltServoDegrees", servo.getAngle());
     }
 }

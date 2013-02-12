@@ -7,6 +7,7 @@ package edu.tps.team3453.subsystems;
 import edu.tps.team3453.RobotMap;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -25,9 +26,19 @@ public class PanServo extends Subsystem {
         servo.set(0);
     }
     public void panWhileOn(){
+        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
         servo.set(1);
     }
     public void panApproach(){
+        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
         servo.set(1);
+    }
+    public void panServoClockwise() {
+        servo.setAngle(servo.getAngle() + 2.0);
+        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
+    }
+    public void panServoCounterclockwise() {
+        servo.setAngle(servo.getAngle() - 2.0);
+        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
     }
 }
