@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package edu.tps.team3453.commands;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Encoder;
 
 /**
@@ -12,8 +11,6 @@ import edu.wpi.first.wpilibj.Encoder;
  */
 public class AutoDriveFreeFwd extends CommandBase {
     double setpoint;
-    SpeedController leftMotor = leftDriveMotor.getMotor();
-    SpeedController rightMotor = rightDriveMotor.getMotor();
     Encoder leftEncoder = leftDriveMotor.getEncoder();
     Encoder rightEncoder = rightDriveMotor.getEncoder();
     boolean initrun = true;
@@ -39,8 +36,8 @@ public class AutoDriveFreeFwd extends CommandBase {
             leftEncoder.start();
             rightEncoder.reset();
             rightEncoder.start();
-            leftMotor.set(0.2);
-            rightMotor.set(-0.1);
+            leftDriveMotor.powerOn(0.2);
+            rightDriveMotor.powerOn(-0.1);
             
         }
     }
@@ -65,17 +62,16 @@ public class AutoDriveFreeFwd extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         initrun = true;
-        leftMotor.set(0);
-        rightMotor.set(0);
-        
+        leftDriveMotor.off();
+        rightDriveMotor.off();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
         initrun = true;
-        leftMotor.set(0);
-        rightMotor.set(0);
+        leftDriveMotor.off();
+        rightDriveMotor.off();
     }
     
     public void setSetPoint (double setpoint) {

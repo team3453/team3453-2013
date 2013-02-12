@@ -6,24 +6,30 @@ package edu.tps.team3453.commands;
 
 /**
  *
- * @author digimo
+ * @author Madeline
  */
-public class RightDriveMotorStop extends CommandBase {
+public class ArmReach extends CommandBase {
     
-    public RightDriveMotorStop() {
+    public ArmReach() {
+        requires(leftArm);
+        requires(rightArm);
+        requires(leftSolenoid);
+        requires(rightSolenoid);
+        
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(rightDriveMotor);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    leftSolenoid.Unlock();
+    rightSolenoid.Unlock();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        rightDriveMotor.off();
-        //leftDriveMotor.reset();
+        leftArm.leftArmReach();
+        rightArm.rightArmReach();
     }
 
     // Make this return true when this Command no longer needs to run execute()

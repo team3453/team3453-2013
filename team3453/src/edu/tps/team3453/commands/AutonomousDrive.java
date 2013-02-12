@@ -61,16 +61,16 @@ public class AutonomousDrive extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         initrun = true;
-        leftDriveMotor.disable();
-        rightDriveMotor.disable();
+        leftDriveMotor.off();
+        rightDriveMotor.off();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
         initrun = true;
-        leftDriveMotor.disable();
-        rightDriveMotor.disable();
+        leftDriveMotor.off();
+        rightDriveMotor.off();
     }
     
     public void setSetPoint (double setpoint) {
