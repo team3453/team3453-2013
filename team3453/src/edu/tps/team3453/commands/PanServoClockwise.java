@@ -6,14 +6,14 @@ package edu.tps.team3453.commands;
 
 /**
  *
- * @author Alexander
+ * @author Madeline
  */
 public class PanServoClockwise extends CommandBase {
     
-    public PanServoClockwise() {
-        requires(panServo);
-        setTimeout(.1);
-        // Use requires() here to declare subsystem dependencies
+public PanServoClockwise() {
+    requires(panServo);
+    setTimeout(.5);
+    // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
