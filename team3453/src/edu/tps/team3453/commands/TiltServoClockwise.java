@@ -6,13 +6,13 @@ package edu.tps.team3453.commands;
 
 /**
  *
- * @author Alexander
+ * @author Madeline
  */
 public class TiltServoClockwise extends CommandBase {
     
     public TiltServoClockwise() {
         requires(tiltServo);
-        setTimeout(.1);
+        setTimeout(.5);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

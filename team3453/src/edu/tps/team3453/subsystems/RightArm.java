@@ -8,6 +8,7 @@ import edu.tps.team3453.RobotMap;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.tps.team3453.commands.RightArmDoNothing;
 
 /**
  *
@@ -21,6 +22,7 @@ public class RightArm extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new RightArmDoNothing());
     }
     public void rightArmReach(){
         rightArm.set(1);

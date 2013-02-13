@@ -8,13 +8,12 @@ package edu.tps.team3453.commands;
  *
  * @author Madeline
  */
-public class TiltServoCounterClockwise extends CommandBase {
+public class TiltServoDoNothing extends CommandBase {
     
-    public TiltServoCounterClockwise() {
-        requires(tiltServo);
-        setTimeout(.5);
+    public TiltServoDoNothing() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(tiltServo);
     }
 
     // Called just before this Command runs the first time
@@ -23,7 +22,7 @@ public class TiltServoCounterClockwise extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        tiltServo.tiltServoCounterClockwise();
+        tiltServo.tiltServoDoNothing();
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -8,6 +8,7 @@ import edu.tps.team3453.RobotMap;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.tps.team3453.commands.PanServoDoNothing;
 
 /**
  *
@@ -21,24 +22,27 @@ public class PanServo extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new PanServoDoNothing());
     }
     public void panServoDoNothing(){
-        servo.set(0);
+        //servo.set(0);
     }
     public void panWhileOn(){
-        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
         servo.set(1);
+        SmartDashboard.putNumber("PanServo Degrees", servo.get());
     }
     public void panApproach(){
-        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
         servo.set(1);
+        SmartDashboard.putNumber("PanServo Degrees", servo.get());
     }
-    public void panServoClockwise() {
-        servo.setAngle(servo.getAngle() + 2.0);
-        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
+    public void panServoClockwise(){
+        //servo.set(1);
+        servo.setAngle(100);
+        SmartDashboard.putNumber("PanServo Degrees", servo.get());
     }
-    public void panServoCounterclockwise() {
-        servo.setAngle(servo.getAngle() - 2.0);
-        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
+    public void panServoCounterClockwise(){
+        //servo.set(-1);
+        servo.setAngle(60);
+        SmartDashboard.putNumber("PanServo Degrees", servo.get());
     }
 }

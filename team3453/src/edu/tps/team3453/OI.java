@@ -13,12 +13,16 @@ import edu.tps.team3453.commands.ArmPull;
 import edu.tps.team3453.commands.ArmReach;
 import edu.tps.team3453.commands.ClimberChassisBackward;
 import edu.tps.team3453.commands.ClimberChassisForward;
+
 import edu.tps.team3453.commands.PanServoClockwise;
 import edu.tps.team3453.commands.PanServoCounterClockwise;
+
 import edu.tps.team3453.commands.RearWheelExtend;
 import edu.tps.team3453.commands.RearWheelRetract;
+
 import edu.tps.team3453.commands.TiltServoClockwise;
 import edu.tps.team3453.commands.TiltServoCounterClockwise;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
@@ -55,16 +59,17 @@ public class OI {
         b9.whenPressed(new CameraWhileOnPyramid());
         b10.whenPressed(new LidClose());
         b11.whenPressed(new LidOpen());
-        //joystick2b2.whenPressed(new SolenoidLock());
-        //joystick2b3.whenPressed(new SolenoidUnlock());
+        joystick2b2.whenPressed(new SolenoidLock());
+        joystick2b3.whenPressed(new SolenoidUnlock());
         joystick2b3.whenPressed(new ClimberChassisForward());
         joystick2b3.whenPressed(new ClimberChassisBackward());
         joystick2b6.whenPressed(new RearWheelExtend());
         joystick2b7.whenPressed(new RearWheelRetract());
-        b3.whenPressed(new PanServoClockwise());
-        b2.whenPressed(new PanServoCounterClockwise());
-        b1.whenPressed(new TiltServoClockwise());
-        b4.whenPressed(new TiltServoCounterClockwise());
+        
+        b4.whenPressed(new PanServoCounterClockwise());
+        b5.whenPressed(new PanServoClockwise());
+        b3.whenPressed(new TiltServoClockwise());
+        b2.whenPressed(new TiltServoCounterClockwise());
     }
     
     //// CREATING BUTTONS

@@ -1,16 +1,18 @@
+
+import edu.tps.team3453.commands.CommandBase;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.tps.team3453.commands;
 
 /**
  *
  * @author Madeline
  */
-public class TiltServoCounterClockwise extends CommandBase {
+public class TiltServoWhileOn extends CommandBase {
     
-    public TiltServoCounterClockwise() {
+    public TiltServoWhileOn() {
         requires(tiltServo);
         setTimeout(.5);
         // Use requires() here to declare subsystem dependencies
@@ -23,12 +25,12 @@ public class TiltServoCounterClockwise extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        tiltServo.tiltServoCounterClockwise();
+        tiltServo.tiltServoWhileOn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

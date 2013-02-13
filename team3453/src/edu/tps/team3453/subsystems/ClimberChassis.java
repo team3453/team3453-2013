@@ -7,6 +7,7 @@ package edu.tps.team3453.subsystems;
 import edu.tps.team3453.RobotMap;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.tps.team3453.commands.ClimberChassisDoNothing;
 
 /**
  *
@@ -20,6 +21,7 @@ public class ClimberChassis extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new ClimberChassisDoNothing());
     }
     public void Forward(){
         climberChassis.set(Relay.Value.kForward);
