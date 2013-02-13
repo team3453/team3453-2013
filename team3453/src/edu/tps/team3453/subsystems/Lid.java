@@ -5,14 +5,17 @@
 package edu.tps.team3453.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Relay;
 import edu.tps.team3453.RobotMap;
 import edu.tps.team3453.commands.LidStop;
-import edu.wpi.first.wpilibj.Relay;
 /**
  *
  * @author Madeline
  */
 public class Lid extends Subsystem {
+    //private static final SpeedController lidMotor = new Victor(RobotMap.lid);
     private static final Relay lidMotor = new Relay(RobotMap.lid);
     //limit switch x2 
     // Put methods for controlling this subsystem
@@ -25,13 +28,16 @@ public class Lid extends Subsystem {
         setDefaultCommand(new LidStop());
     }
     public void Open(){
+        //lidMotor.set(1);
         lidMotor.set(Relay.Value.kForward);
     }
     public void Close(){
         lidMotor.set(Relay.Value.kReverse);
+        //lidMotor.set(-1);
     }
     public void Stop() {
         lidMotor.set(Relay.Value.kOff);
+        //lidMotor.set(0.0);
     }
     public boolean isOpen(){
         //replace with return switch.get();

@@ -6,13 +6,13 @@ package edu.tps.team3453.commands;
 
 /**
  *
- * @author Alexander
+ * @author Madeline
  */
 public class PanServoCounterClockwise extends CommandBase {
     
     public PanServoCounterClockwise() {
         requires(panServo);
-        setTimeout(.1);
+        setTimeout(.5);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -23,9 +23,9 @@ public class PanServoCounterClockwise extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        panServo.panServoCounterclockwise();
+        panServo.panServoCounterClockwise();
     }
-
+    
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return isTimedOut();

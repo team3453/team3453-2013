@@ -8,6 +8,7 @@ import edu.tps.team3453.RobotMap;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.tps.team3453.commands.TiltServoDoNothing;
 
 /**
  *
@@ -21,25 +22,26 @@ Servo servo = new Servo(RobotMap.tiltServoInput);
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new TiltServoDoNothing());
     }
     public void tiltServoDoNothing(){
-        servo.set(0);
+        //servo.set(0);
+        
     }
     public void tiltServoWhileOn(){
-        SmartDashboard.putNumber("TiltServoDegrees", servo.getAngle());
         servo.set(1);
+        SmartDashboard.putNumber("TiltServo Degrees", servo.get());
     }
     public void tiltServoApproach(){
-        SmartDashboard.putNumber("TiltServoDegrees", servo.getAngle());
         servo.set(1);
+        SmartDashboard.putNumber("TiltServo Degrees", servo.get());
     }
-    
-    public void tiltServoClockwise() {
-        servo.setAngle(servo.getAngle() + 2.0);
-        SmartDashboard.putNumber("TiltServoDegrees", servo.getAngle());
+    public void tiltServoClockwise(){
+        servo.set(1);
+        SmartDashboard.putNumber("TiltServo Degrees", servo.get());
     }
-    public void tiltServoCounterclockwise() {
-        servo.setAngle(servo.getAngle() -2.0);
-        SmartDashboard.putNumber("TiltServoDegrees", servo.getAngle());
+    public void tiltServoCounterClockwise(){
+        servo.set(-1);
+        SmartDashboard.putNumber("TiltServo Degrees", servo.get());
     }
 }
