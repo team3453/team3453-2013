@@ -48,7 +48,7 @@ public abstract class CommandBase extends Command {
         oi = new OI();
 
         // Show what command your subsystem is running on the SmartDashboard
-        updateStatus();
+        //updateStatus();
     }
 
     public CommandBase(String name) {

@@ -12,6 +12,7 @@ public class LidClose extends CommandBase {
     
     public LidClose() {
         requires(lid);
+        //setTimeout(0.02);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -27,7 +28,7 @@ public class LidClose extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return lid.isClosed();
     }
 
     // Called once after isFinished returns true

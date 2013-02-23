@@ -12,6 +12,9 @@ public class ClimberChassisForward extends CommandBase {
     
     public ClimberChassisForward() {
         requires(climberChassis);
+        //requires(tiltServo);
+        //requires(panServo);
+        setTimeout(.06);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -23,11 +26,13 @@ public class ClimberChassisForward extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         climberChassis.Forward();
+        //tiltServo.tiltServoWhileOn();
+        //panServo.panWhileOn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isStopped();
     }
 
     // Called once after isFinished returns true
@@ -37,5 +42,13 @@ public class ClimberChassisForward extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    
+    private boolean isStopped() {
+        if (climberChassis.isExtended()||isTimedOut()){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

@@ -34,7 +34,7 @@ public class ArmReach extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isExtended();
     }
 
     // Called once after isFinished returns true
@@ -44,5 +44,12 @@ public class ArmReach extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    private boolean isExtended() {
+        if(leftArm.isExtended() && rightArm.isExtended()) {
+         return true;   
+        } else{
+            return false;
+        }
     }
 }

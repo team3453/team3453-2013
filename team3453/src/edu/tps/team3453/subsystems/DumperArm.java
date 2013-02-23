@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.tps.team3453.RobotMap;
+import edu.tps.team3453.Utils;
 import edu.tps.team3453.commands.DumperArmDoNothing;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Relay;
 
 /**
@@ -17,8 +19,8 @@ import edu.wpi.first.wpilibj.Relay;
  */
 public class DumperArm extends Subsystem {
     private static final Relay dumperArmMotor = new Relay(RobotMap.dumperArmMotor);
-    
-
+    private static final DigitalInput limitSwitchDumperUp = new DigitalInput(2, RobotMap.limitSwitchDumperUp);
+    private static final DigitalInput limitSwitchDumperDown = new DigitalInput(2, RobotMap.limitSwitchDumperDown);
     public void initDefaultCommand() {
         setDefaultCommand(new DumperArmDoNothing());
     }
@@ -31,4 +33,10 @@ public class DumperArm extends Subsystem {
     public void Stop() {
         dumperArmMotor.set(Relay.Value.kOff);
     }    
+    public boolean isUp () {
+        return(Utils.negate(limitSwitchDumperUp.get()));
+    }
+    public boolean isDown () {
+        return(Utils.negate(limitSwitchDumperDown.get()));
+    }
 }
