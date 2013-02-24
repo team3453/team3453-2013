@@ -15,7 +15,7 @@ public class ArmReach extends CommandBase {
         requires(rightArm);
         requires(leftSolenoid);
         requires(rightSolenoid);
-        
+        setTimeout(5.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -46,7 +46,7 @@ public class ArmReach extends CommandBase {
     protected void interrupted() {
     }
     private boolean isExtended() {
-        if(leftArm.isExtended() && rightArm.isExtended()) {
+        if((leftArm.isExtended() && rightArm.isExtended()) || isTimedOut()) {
          return true;   
         } else{
             return false;

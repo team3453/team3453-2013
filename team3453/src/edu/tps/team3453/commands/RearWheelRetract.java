@@ -12,7 +12,7 @@ public class RearWheelRetract extends CommandBase {
     
     public RearWheelRetract() {
         requires(rearWheel);
-        setTimeout(0.1);
+        setTimeout(5.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -40,7 +40,7 @@ public class RearWheelRetract extends CommandBase {
     protected void interrupted() {
     }
      private boolean isRetracted() {
-        if (rearWheel.isRetracted()||isTimedOut()){
+        if (rearWheel.isRetracted() || isTimedOut()){
             return true;
         }else {
             return false;

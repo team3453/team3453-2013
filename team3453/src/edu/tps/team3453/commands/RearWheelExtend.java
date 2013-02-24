@@ -12,7 +12,7 @@ public class RearWheelExtend extends CommandBase {
     
     public RearWheelExtend() {
         requires(rearWheel);
-        setTimeout(0.1);
+        setTimeout(5.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -40,7 +40,7 @@ public class RearWheelExtend extends CommandBase {
     protected void interrupted() {
     }
      private boolean isExtended() {
-        if (rearWheel.isExtended()||isTimedOut()){
+        if (rearWheel.isExtended() || isTimedOut()){
             return true;
         }else {
             return false;

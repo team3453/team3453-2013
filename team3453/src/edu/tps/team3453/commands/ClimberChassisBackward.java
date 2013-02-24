@@ -12,7 +12,7 @@ public class ClimberChassisBackward extends CommandBase {
     
     public ClimberChassisBackward() {
         requires(climberChassis);
-        setTimeout(.06);
+        setTimeout(5.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -40,7 +40,7 @@ public class ClimberChassisBackward extends CommandBase {
     protected void interrupted() {
     }
      private boolean isRetracted() {
-        if (climberChassis.isRetracted()||isTimedOut()){
+        if (climberChassis.isRetracted() || isTimedOut()){
             return true;
         }else {
             return false;

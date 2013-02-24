@@ -29,6 +29,8 @@ public class LeftDriveMotor extends PIDSubsystem {
     private static final SpeedController leftMotor = new Victor(RobotMap.leftDriveMotor);
     private static final Encoder leftEncoder = new Encoder(RobotMap.leftDriveEncoderA,RobotMap.leftDriveEncoderB);
 
+    private static double currentOutput = 0.0;
+    
     // Initialize your subsystem here
     public LeftDriveMotor() {
         super("LeftDriveMotor", Kp, Ki, Kd, Kf);
@@ -94,5 +96,51 @@ public class LeftDriveMotor extends PIDSubsystem {
         SmartDashboard.putNumber("Left Motor out ", leftMotor.get());
         SmartDashboard.putNumber("Left Enc rate ", leftEncoder.getRate());
         
+    }
+
+    public void setAt10() {
+        System.out.println("left motor set at 10");
+        leftMotor.set(0.1);
+    }
+
+    public void setAt12() {
+        System.out.println("left motor set at 12");
+        leftMotor.set(0.12);
+    }
+
+    public void setAt15() {
+        System.out.println("left motor set at 15");
+        leftMotor.set(0.15);
+    }
+
+    public void setAt20() {
+        System.out.println("left motor set at 20");
+        leftMotor.set(0.2);
+    }
+    
+    public void up5 () {
+        currentOutput += 0.05;
+        checkOutput();
+        runCurrentOutput();
+    }
+    
+    public void down5 () {
+        currentOutput -= 0.05;
+        checkOutput();
+        runCurrentOutput();
+
+    }
+    
+    public void runCurrentOutput() {
+        System.out.println("Left Motor Current Output is "+currentOutput);
+        leftMotor.set(currentOutput);
+    }
+    
+    private void checkOutput() {
+        if (currentOutput > 1.0) {
+            currentOutput = 1.0;
+        } else if (currentOutput < -1.0) {
+            currentOutput = -1.0;
+        }
     }
 }

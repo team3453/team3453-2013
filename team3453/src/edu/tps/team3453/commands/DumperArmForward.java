@@ -14,6 +14,7 @@ public class DumperArmForward extends CommandBase {
         requires(dumperArm);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        setTimeout(5.0);
     }
 
     // Called just before this Command runs the first time
@@ -27,7 +28,7 @@ public class DumperArmForward extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return dumperArm.isUp();
+        return isEnded();
     }
 
     // Called once after isFinished returns true
@@ -37,5 +38,13 @@ public class DumperArmForward extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    
+    private boolean isEnded() {
+        if(dumperArm.isUp() || isTimedOut()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

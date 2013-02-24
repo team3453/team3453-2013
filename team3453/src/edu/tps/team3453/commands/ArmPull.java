@@ -15,6 +15,7 @@ public class ArmPull extends CommandBase {
         requires(rightArm);
         requires(rightSolenoid);
         requires(leftSolenoid);
+        setTimeout(5.0);
         // add timeout
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -47,7 +48,7 @@ public class ArmPull extends CommandBase {
     }
     
     private boolean isRetracted() {
-        if(leftArm.isRetracted() && rightArm.isRetracted()) {
+        if((leftArm.isRetracted() && rightArm.isRetracted()) || isTimedOut()) {
             return true;
         } else {
             return false;

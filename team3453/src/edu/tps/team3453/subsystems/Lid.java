@@ -45,12 +45,12 @@ public class Lid extends Subsystem {
         //lidMotor.set(0.0);
     }
     public boolean isOpen(){
-        //System.out.println("Open Limit Switch: "+limitSwitchOpen.get());
+        System.out.println("Open Limit Switch: "+limitSwitchOpen.get());
         //return false;
         return limitSwitchOpen.get();
     }
     public boolean isClosed() {
-        //System.out.println("Close Limit Switch: "+limitSwitchClose.get());
+        System.out.println("Close Limit Switch: "+limitSwitchClose.get());
         //return false;
         return limitSwitchClose.get(); 
         //replace with return switch.get();

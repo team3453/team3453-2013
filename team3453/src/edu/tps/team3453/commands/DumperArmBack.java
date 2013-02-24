@@ -11,7 +11,8 @@ package edu.tps.team3453.commands;
 public class DumperArmBack extends CommandBase {
     
     public DumperArmBack() {
-        requires(dumperArm);
+        requires(dumperArm); 
+        setTimeout(5.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -27,7 +28,7 @@ public class DumperArmBack extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return dumperArm.isDown();
+        return isEnded();
     }
 
     // Called once after isFinished returns true
@@ -37,5 +38,13 @@ public class DumperArmBack extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    
+    private boolean isEnded() {
+        if(dumperArm.isDown() || isTimedOut()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -13,6 +13,7 @@ public class SolenoidLock extends CommandBase {
     public SolenoidLock() {
         requires(leftSolenoid);
         requires(rightSolenoid);
+        
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

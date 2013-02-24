@@ -33,22 +33,23 @@ public class DriveTeleop extends CommandBase {
         rightMotor = rightDriveMotor.getMotor();
         drive = new RobotDrive(leftMotor, rightMotor);
         stick = new Joystick(RobotMap.leftJoystick);
+        
+        System.out.println("DriveTeleop is executing");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("DriveTeleop is executing");
         drive.arcadeDrive(stick);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        System.out.println("DriveTeleop is finished");
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        System.out.println("DriveTeleop is finished");
     }
 
     // Called when another command which requires one or more of the same
