@@ -12,7 +12,7 @@ public class PanServoCounterClockwise extends CommandBase {
     
     public PanServoCounterClockwise() {
         requires(panServo);
-        setTimeout(.5);
+        setTimeout(.01);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

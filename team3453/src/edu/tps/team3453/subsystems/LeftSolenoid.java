@@ -27,6 +27,6 @@ public class LeftSolenoid extends Subsystem {
         leftSolenoid.set(Relay.Value.kOff);
     }
     public void Unlock(){
-        leftSolenoid.set(Relay.Value.kOn);
+        leftSolenoid.set(Relay.Value.kForward);
     }
 }

@@ -15,6 +15,7 @@ import edu.tps.team3453.subsystems.RearWheel;
 import edu.tps.team3453.subsystems.RightArm;
 import edu.tps.team3453.subsystems.RightSolenoid;
 import edu.tps.team3453.subsystems.TiltServo;
+import edu.tps.team3453.subsystems.TestLimitSwitch;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -39,6 +40,8 @@ public abstract class CommandBase extends Command {
     public static final ClimberChassis climberChassis = new ClimberChassis();
     public static final RearWheel rearWheel = new RearWheel();
     
+    public static final TestLimitSwitch testLimitSwitch = new TestLimitSwitch();
+    
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
@@ -48,7 +51,7 @@ public abstract class CommandBase extends Command {
         oi = new OI();
 
         // Show what command your subsystem is running on the SmartDashboard
-        updateStatus();
+        //updateStatus();
     }
 
     public CommandBase(String name) {
