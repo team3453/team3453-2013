@@ -12,7 +12,7 @@ public class TiltServoClockwise extends CommandBase {
     
     public TiltServoClockwise() {
         requires(tiltServo);
-        setTimeout(.5);
+        setTimeout(.01);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

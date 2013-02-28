@@ -10,12 +10,13 @@ package edu.tps.team3453;
 
 import edu.tps.team3453.commands.CommandBase;
 import edu.tps.team3453.commands.DriveTeleop;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.tps.team3453.commands.CommandBase;
+
 import edu.tps.team3453.commands.AutonomousDrive;
 import edu.tps.team3453.commands.AutoDriveFreeFwd;
 
@@ -74,6 +75,6 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-        //LiveWindow.run();
+        LiveWindow.run();
     }
 }
