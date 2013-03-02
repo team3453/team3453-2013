@@ -7,9 +7,11 @@ package edu.tps.team3453.subsystems;
 import edu.tps.team3453.RobotMap;
 import edu.tps.team3453.commands.LeftArmDoNothing;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -20,21 +22,42 @@ public class LeftArm extends PIDSubsystem {
     private static final double Kp = 0.0;
     private static final double Ki = 0.0;
     private static final double Kd = 0.0;
+    private static final double Kf = 0.2;
     
-    SpeedController leftArm = new Victor(RobotMap.leftArm);
-    private static DigitalInput limitSwitchLeftArmReach = new DigitalInput(2, RobotMap.limitSwitchLeftArmReach);
-    private static DigitalInput limitSwitchLeftArmPull = new DigitalInput(2, RobotMap.limitSwitchLeftArmPull);
+    private static double KoutMin = 0.2;
+    private static double KoutMax = 0.25;
+    private static double Ksetpoint = 550;
+    
+    private static final SpeedController leftArm = new Victor(RobotMap.leftArm);
+    private static final DigitalInput limitSwitchLeftArmReach = new DigitalInput(2, RobotMap.limitSwitchLeftArmReach);
+    private static final DigitalInput limitSwitchLeftArmPull = new DigitalInput(2, RobotMap.limitSwitchLeftArmPull);
+    private static final Encoder leftEncoder = new Encoder(RobotMap.leftArmEncoderA,RobotMap.leftArmEncoderB);
 
     private static double  currentOutput = 0.0;
+    private static double  currentRate = 0.0;
+    private static double  currentAverageRate = 09.0;
+    private static double  rateArray[];
+    private static int     rateArrayIndex = -1;
+    private static boolean firstTimeRate = true;
     
     // Initialize your subsystem here
     public LeftArm() {
-        super("LeftArm", Kp, Ki, Kd);
+        super("LeftArm", Kp, Ki, Kd, Kf);
 
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system
         //                  to
         // enable() - Enables the PID controller.
+        
+        rateArray = new double[10];
+        leftEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
+        setAbsoluteTolerance(2.0);
+        
+        disable();
+        leftEncoder.stop();
+        leftEncoder.reset();
+        leftEncoder.start();
+        setSetpoint(Ksetpoint);
     }
     
     public void initDefaultCommand() {
@@ -47,12 +70,49 @@ public class LeftArm extends PIDSubsystem {
         // Return your input value for the PID loop
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
-        return 0.0;
+        
+        // advance the index and reset it to 0 if we have ran off the highend
+        rateArrayIndex++;
+        if (rateArrayIndex > 9) {
+            rateArrayIndex = 0;
+        }
+        
+        // get the raw rate and store it in the window 
+        currentRate = leftEncoder.getRate();
+        rateArray[rateArrayIndex] = currentRate;
+        
+        // prime the entire array with the first measurement if this is the first measurement
+        if (firstTimeRate) {
+            firstTimeRate = false;
+            for (int i = 0; i < 10; i++) {
+                rateArray[i] = currentRate;
+            }
+        }
+        
+        // calculate the sum and produce the average of the array
+        int s = 0;
+        for (int i = 0; i < 10; i++) {
+            s += rateArray[i];
+        }
+        currentAverageRate = s / 10.0;
+        if (onTarget()) {
+            getPIDController().setPID(Kp, Ki, Kd, currentOutput);
+        }
+        return (currentAverageRate);
     }
     
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
+        if (output > KoutMax) {
+            output = KoutMax;
+        }
+        if (output < KoutMin) {
+            output = KoutMin;
+        }
+        
+        currentOutput = output;
+        leftArm.set(output);
     }
     
     public void leftArmReach(){
@@ -62,6 +122,7 @@ public class LeftArm extends PIDSubsystem {
         leftArm.set(-0.2);
     }
     public void stop(){
+        disable();
         leftArm.set(0);
     }
     public boolean isExtended() {
@@ -99,5 +160,14 @@ public class LeftArm extends PIDSubsystem {
         } else if (currentOutput < -1.0) {
             currentOutput = -1.0;
         }
+    }
+    public void updateStatus() {
+        SmartDashboard.putNumber("Left Arm Enc count ", leftEncoder.get());
+        SmartDashboard.putNumber("Left Arm Motor out ", leftArm.get());
+        SmartDashboard.putNumber("Left Arm Enc rate ",  currentRate);        
+    }
+    
+    public void checkRate() {
+        
     }
 }
