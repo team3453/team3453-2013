@@ -25,7 +25,7 @@ public class ClimberChassis extends PIDSubsystem {
     Relay climberChassis = new Relay(RobotMap.climberChassis);
     private static final DigitalInput limitSwitchExtend = new DigitalInput(RobotMap.climberChassisExtendLimitSwitch);
     private static final DigitalInput limitSwitchRetract = new DigitalInput(RobotMap.climberChassisRetractLimitSwitch);
-    
+    private static final DigitalInput interLimitSwitchOpen = new DigitalInput(RobotMap.limitSwitchCrashPreventer);    
 
     // Initialize your subsystem here
     public ClimberChassis() {
@@ -65,7 +65,7 @@ public class ClimberChassis extends PIDSubsystem {
         climberChassis.set(Relay.Value.kOff);
     }
     public boolean isExtended() {
-        return limitSwitchExtend.get();
+        return (limitSwitchExtend.get() || interLimitSwitchOpen.get());
     }
     public boolean isRetracted() {
         return limitSwitchRetract.get();

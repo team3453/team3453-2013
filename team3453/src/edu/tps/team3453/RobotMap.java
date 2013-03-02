@@ -31,7 +31,8 @@ public class RobotMap {
     public static final int climberChassisExtendLimitSwitch = 3;
     public static final int climberChassisRetractLimitSwitch = 4;
     
-    public static final int testLimitSwitch = 10;
+    //public static final int testLimitSwitch = 10;
+    public static final int limitSwitchCrashPreventer = 10;
     public static final int leftArmEncoderA = 11;
     public static final int leftArmEncoderB = 12;
     
