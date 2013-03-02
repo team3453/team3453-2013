@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class TestLimitSwitch extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-    private static final DigitalInput limitSwitchOpen = new DigitalInput(RobotMap.testLimitSwitch);
+    private static final DigitalInput limitSwitchOpen = new DigitalInput(RobotMap.limitSwitchCrashPreventer);
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

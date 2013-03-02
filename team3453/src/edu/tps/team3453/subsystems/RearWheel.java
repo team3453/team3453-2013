@@ -25,7 +25,7 @@ public class RearWheel extends PIDSubsystem {
 Relay rearWheel = new Relay(RobotMap.rearWheel);
 private static final DigitalInput limitSwitchRearWheelExtend = new DigitalInput(2, RobotMap.limitSwitchRearWheelExtend);    
 private static final DigitalInput limitSwitchRearWheelRetract = new DigitalInput(2, RobotMap.limitSwitchRearWheelRetract);
-    
+private static final DigitalInput interLimitSwitchOpen = new DigitalInput(RobotMap.limitSwitchCrashPreventer);    
 
     // Initialize your subsystem here
     public RearWheel() {
@@ -65,7 +65,7 @@ private static final DigitalInput limitSwitchRearWheelRetract = new DigitalInput
         rearWheel.set(Relay.Value.kOff);
     }
     public boolean isExtended(){
-        return limitSwitchRearWheelExtend.get();
+        return (limitSwitchRearWheelExtend.get() || interLimitSwitchOpen.get());
     }
     public boolean isRetracted(){
         return limitSwitchRearWheelRetract.get();
