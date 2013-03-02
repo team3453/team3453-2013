@@ -4,6 +4,7 @@
  */
 package edu.tps.team3453.subsystems;
 
+import edu.tps.team3453.OI;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.tps.team3453.RobotMap;
 import edu.tps.team3453.Utils;
@@ -70,4 +71,9 @@ private static final DigitalInput limitSwitchRearWheelRetract = new DigitalInput
     public boolean isRetracted(){
         return limitSwitchRearWheelRetract.get();
     }
-}
+    public double getJoystickValue(){
+        return OI.joystick.getY();
+        
+        }
+    }
+
