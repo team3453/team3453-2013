@@ -4,17 +4,17 @@
  */
 package edu.tps.team3453.commands;
 
+import edu.wpi.first.wpilibj.Relay;
+
 /**
  *
- * @author Madeline
+ * @author admin
  */
-public class RearWheelRetract extends CommandBase {
+public class controlRearWheel extends CommandBase {
     
-    public RearWheelRetract() {
-        requires(rearWheel);
-        setTimeout(5.0);
+    public controlRearWheel() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(rearWheel);
     }
 
     // Called just before this Command runs the first time
@@ -23,13 +23,20 @@ public class RearWheelRetract extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        rearWheel.retract();
-        
+        if(rearWheel.getJoystickValue() >= 0.150){
+           rearWheel.extend();
+        } else if (rearWheel.getJoystickValue() <= -0.150){
+           rearWheel.retract();
+        } else {
+           rearWheel.stop();
+        }
+    
     }
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isRetracted();
+        return isLimitPressed();
     }
 
     // Called once after isFinished returns true
@@ -40,11 +47,11 @@ public class RearWheelRetract extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-     private boolean isRetracted() {
-        if (rearWheel.isRetracted() || isTimedOut()){
-            return true;
-        }else {
-            return false;
+    public boolean isLimitPressed(){
+        if (rearWheel.isExtended() || rearWheel.isRetracted()) {
+        return true;
+    } else { 
+        return false;
+    }
 }
-     }
 }

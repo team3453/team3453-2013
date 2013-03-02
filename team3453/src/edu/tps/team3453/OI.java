@@ -36,6 +36,7 @@ import edu.tps.team3453.commands.TiltServoClockwise;
 import edu.tps.team3453.commands.TiltServoCounterClockwise;
 
 import edu.tps.team3453.commands.TestLimitSwitchTesting;
+import edu.tps.team3453.commands.controlRearWheel;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -47,8 +48,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    public Joystick joystick = new Joystick(1);
-    public Joystick joystick2 = new Joystick(2);
+    public static Joystick joystick = new Joystick(1);
+    public static Joystick joystick2 = new Joystick(2);
     Button b1 = new JoystickButton (joystick, 1);
     Button b2 = new JoystickButton (joystick, 2);
     Button b3 = new JoystickButton (joystick, 3);
@@ -87,8 +88,9 @@ public class OI {
         joystick2b3.whenPressed(new SolenoidUnlock());
         joystick2b4.whenPressed(new ClimberChassisForward());
         joystick2b5.whenPressed(new ClimberChassisBackward());
-        joystick2b6.whenPressed(new RearWheelExtend());
-        joystick2b7.whenPressed(new RearWheelRetract());
+        joystick2b6.whenPressed(new controlRearWheel());
+        // joystick2b6.whenPressed(new RearWheelExtend());
+        // joystick2b7.whenPressed(new RearWheelRetract());
         joystick2b8.whenPressed(new ArmPull());
         joystick2b9.whenPressed(new ArmReach());
         
