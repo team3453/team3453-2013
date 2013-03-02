@@ -4,6 +4,7 @@
  */
 package edu.tps.team3453.subsystems;
 
+import edu.tps.team3453.OI;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.tps.team3453.RobotMap;
 import edu.tps.team3453.Utils;
@@ -69,5 +70,8 @@ public class ClimberChassis extends PIDSubsystem {
     }
     public boolean isRetracted() {
         return limitSwitchRetract.get();
+    }
+    public double getAxisValue(){
+        return OI.joystick.getY();
     }
 }
