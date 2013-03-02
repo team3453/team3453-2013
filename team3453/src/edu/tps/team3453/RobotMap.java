@@ -32,8 +32,8 @@ public class RobotMap {
     public static final int climberChassisRetractLimitSwitch = 4;
     
     public static final int testLimitSwitch = 10;
-    public static final int climberChassisEncoderA = 11;
-    public static final int climberChassisEncoderB = 12;
+    public static final int leftArmEncoderA = 11;
+    public static final int leftArmEncoderB = 12;
     
     //Second DSC
     public static final int limitSwitchRearWheelExtend = 1;
@@ -45,8 +45,8 @@ public class RobotMap {
     public static final int limitSwitchDumperUp = 7;
     public static final int limitSwitchDumperDown = 8;
     
-    public static final int rearWheelEncoderA = 11;
-    public static final int rearWheelEncoderB = 12;
+    public static final int rightArmEncoderA = 11;
+    public static final int rightArmEncoderB = 12;
     
     //relay
     public static final int dumperArmMotor = 6;
