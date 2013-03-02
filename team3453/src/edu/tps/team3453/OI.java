@@ -14,6 +14,7 @@ import edu.tps.team3453.commands.ArmPull;
 import edu.tps.team3453.commands.ArmReach;
 import edu.tps.team3453.commands.ClimberChassisBackward;
 import edu.tps.team3453.commands.ClimberChassisForward;
+import edu.tps.team3453.commands.ClimberChassisJoystickControl;
 import edu.tps.team3453.commands.LeftArmDown5;
 import edu.tps.team3453.commands.LeftArmUp5;
 import edu.tps.team3453.commands.LeftMotorAt10;
@@ -97,8 +98,8 @@ public class OI {
         b4.whenPressed(new PanServoCounterClockwise());
         b5.whenPressed(new PanServoClockwise());
         b3.whenPressed(new TiltServoClockwise());
-        b2.whenPressed(new TiltServoCounterClockwise());
-        
+        //b2.whenPressed(new TiltServoCounterClockwise());
+        b2.whenPressed(new ClimberChassisJoystickControl());
         // Arm diagnostics
         /*
         b5.whenPressed(new ArmDoNothing());
