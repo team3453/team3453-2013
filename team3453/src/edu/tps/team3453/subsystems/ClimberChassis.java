@@ -73,6 +73,6 @@ public class ClimberChassis extends PIDSubsystem {
         return limitSwitchRetract.get();
     }
     public double getAxisValue(){
-        return OI.joystick.getY();
+        return OI.joystick2.getY();
     }
 }

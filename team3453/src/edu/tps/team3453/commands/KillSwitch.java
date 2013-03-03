@@ -12,6 +12,8 @@ public class KillSwitch extends CommandBase {
     
     public KillSwitch() {
         // Use requires() here to declare subsystem dependencies
+       requires(leftJoystickToken);
+       requires(rightJoystickToken);
        requires(climberChassis);
        requires(dumperArm);
        requires(leftArm);
@@ -31,15 +33,22 @@ public class KillSwitch extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         climberChassis.Stop();
-        dumperArm.Stop();
-        leftArm.stop();
-        leftDriveMotor.off();
-        lid.Stop();
         rearWheel.stop();
+
+        leftArm.stop();
         rightArm.stop();
-        rightDriveMotor.off();
+        leftArm.disable();
+        rightArm.disable();
         leftSolenoid.Lock();
         rightSolenoid.Lock();
+        
+        leftDriveMotor.off();
+        leftDriveMotor.disable();
+        rightDriveMotor.off();
+        rightDriveMotor.disable();
+
+        lid.Stop();
+        dumperArm.Stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
