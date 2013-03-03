@@ -14,8 +14,8 @@ public class ArmJoystickControl extends CommandBase {
     
     public ArmJoystickControl() {
         requires(leftArm);
-        requires(token);
         requires(rightArm);
+        requires(rightJoystickToken);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -26,7 +26,24 @@ public class ArmJoystickControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        if(OI.joystick2.getY() >=.150){
+            leftArm.setSetpoint(2000);
+            rightArm.setSetpoint(2000);
+            leftArm.enable();
+            rightArm.enable();
+        }
+        else if (OI.joystick2.getY() <=-.150) {
+            leftArm.setSetpoint(-2000);
+            rightArm.setSetpoint(-2000);
+            leftArm.enable();
+            rightArm.enable();
+        }
+        else{
+            leftArm.disable();
+            leftArm.stop();
+            rightArm.disable();
+            rightArm.stop();
+        }
         
     }
 

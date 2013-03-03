@@ -4,17 +4,18 @@
  */
 package edu.tps.team3453.commands;
 
+import edu.wpi.first.wpilibj.Relay;
+
 /**
  *
  * @author admin
  */
-public class ClimberChassisJoystickControl extends CommandBase {
+public class RearWheelJoystickControl extends CommandBase {
     
-    public ClimberChassisJoystickControl() {
-        requires(climberChassis);
-        requires(rightJoystickToken);
+    public RearWheelJoystickControl() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(rearWheel);
+        requires(rightJoystickToken);
     }
 
     // Called just before this Command runs the first time
@@ -23,16 +24,16 @@ public class ClimberChassisJoystickControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(climberChassis.getAxisValue() >=.150){
-            climberChassis.Forward();
+        if(rearWheel.getJoystickValue() >= 0.150){
+           rearWheel.extend();
+        } else if (rearWheel.getJoystickValue() <= -0.150){
+           rearWheel.retract();
+        } else {
+           rearWheel.stop();
         }
-        else if (climberChassis.getAxisValue() <=-.150) {
-            climberChassis.Back();
-        }
-        else{
-            climberChassis.Stop();
-        }
+    
     }
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -48,11 +49,10 @@ public class ClimberChassisJoystickControl extends CommandBase {
     protected void interrupted() {
     }
     public boolean isLimitPressed(){
-        if (climberChassis.isExtended() || climberChassis.isRetracted()){
-            return true;
+        if (rearWheel.isExtended() || rearWheel.isRetracted()) {
+        return true;
+    } else { 
+        return false;
     }
-    else{
-    return false;
-}
 }
 }
