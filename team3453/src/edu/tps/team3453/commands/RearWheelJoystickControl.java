@@ -65,7 +65,7 @@ public class RearWheelJoystickControl extends CommandBase {
     public boolean isLimitPressed(){
         if (rearWheel.isExtended() && isForwards) {
         return true;
-    } else if(rearWheel.isRetracted() && isBackwards) {
+    } else if(rearWheel.isHit() && isBackwards) {
         return true; 
     } else { 
         return false;
