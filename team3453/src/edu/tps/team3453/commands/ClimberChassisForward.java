@@ -45,7 +45,7 @@ public class ClimberChassisForward extends CommandBase {
     }
     
     private boolean isStopped() {
-        if (climberChassis.isExtended() || isTimedOut()){
+        if (climberChassis.isExtended() || rearWheel.isHit() || isTimedOut()){
             return true;
         }else {
             return false;

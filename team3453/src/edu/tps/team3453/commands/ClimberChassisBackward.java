@@ -40,7 +40,7 @@ public class ClimberChassisBackward extends CommandBase {
     protected void interrupted() {
     }
      private boolean isRetracted() {
-        if (climberChassis.isRetracted() || isTimedOut()){
+        if (climberChassis.isRetracted() || isTimedOut() || rearWheel.isHit()){
             return true;
         }else {
             return false;

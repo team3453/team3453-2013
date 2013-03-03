@@ -31,7 +31,7 @@ public class RightArm extends PIDSubsystem {
     private static final SpeedController rightArm = new Victor(RobotMap.rightArm);
     private static final DigitalInput limitSwitchRightArmReach = new DigitalInput(2, RobotMap.limitSwitchRightArmReach);
     private static final DigitalInput limitSwitchRightArmPull = new DigitalInput(2, RobotMap.limitSwitchRightArmPull);
-    private static final Encoder rightEncoder = new Encoder(RobotMap.leftArmEncoderA,RobotMap.leftArmEncoderB);
+    private static final Encoder rightEncoder = new Encoder(2, RobotMap.leftArmEncoderA, 2, RobotMap.leftArmEncoderB);
 
     private static double  currentOutput = 0.0;
     private static double  currentRate = 0.0;

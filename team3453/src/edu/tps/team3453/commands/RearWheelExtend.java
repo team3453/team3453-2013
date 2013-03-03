@@ -40,7 +40,7 @@ public class RearWheelExtend extends CommandBase {
     protected void interrupted() {
     }
      private boolean isExtended() {
-        if (rearWheel.isExtended() || isTimedOut()){
+        if (rearWheel.isExtended() || isTimedOut() || rearWheel.isHit()){
             return true;
         }else {
             return false;
