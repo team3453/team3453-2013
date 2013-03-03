@@ -6,15 +6,14 @@ package edu.tps.team3453.commands;
 
 /**
  *
- * @author Madeline
+ * @author digimo
  */
-public class ClimberChassisBackward extends CommandBase {
+public class CameraFreeControl extends CommandBase {
     
-    public ClimberChassisBackward() {
-        requires(climberChassis);
-        setTimeout(5.0);
+    public CameraFreeControl() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(tiltServo);
+        requires(panServo);
     }
 
     // Called just before this Command runs the first time
@@ -23,12 +22,21 @@ public class ClimberChassisBackward extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        climberChassis.Back();
+        if(panServo.getJoystickValueX() >= 0.150){
+            panServo.panServoClockwise();
+        } else if(panServo.getJoystickValueX() <= -0.150){
+            panServo.panServoCounterClockwise();
+        } else if(tiltServo.getJoystickValueY() >= 0.150){
+            tiltServo.tiltServoClockwise();
+        } else if(tiltServo.getJoystickValueY() <= -0.150){
+            tiltServo.tiltServoCounterClockwise();
+        
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isRetracted();
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -39,11 +47,4 @@ public class ClimberChassisBackward extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-     private boolean isRetracted() {
-        if (climberChassis.isRetracted() || isTimedOut() || rearWheel.isHit()){
-            return true;
-        }else {
-            return false;
-}
-     }
 }

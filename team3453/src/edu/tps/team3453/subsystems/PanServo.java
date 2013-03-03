@@ -4,6 +4,7 @@
  */
 package edu.tps.team3453.subsystems;
 
+import edu.tps.team3453.OI;
 import edu.tps.team3453.RobotMap;
 import edu.tps.team3453.RobotValues;
 import edu.wpi.first.wpilibj.Servo;
@@ -46,4 +47,8 @@ public class PanServo extends Subsystem {
         servo.setAngle(servo.getAngle() - 1.0);
         SmartDashboard.putNumber("PanServo Degrees", servo.getAngle());
     }
+    public double getJoystickValueX(){
+        return OI.joystick.getX();
+        
+        }
 }

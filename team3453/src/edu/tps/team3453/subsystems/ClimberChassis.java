@@ -4,6 +4,7 @@
  */
 package edu.tps.team3453.subsystems;
 
+import edu.tps.team3453.OI;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.tps.team3453.RobotMap;
 import edu.tps.team3453.Utils;
@@ -25,7 +26,7 @@ public class ClimberChassis extends PIDSubsystem {
     Relay climberChassis = new Relay(RobotMap.climberChassis);
     private static final DigitalInput limitSwitchExtend = new DigitalInput(RobotMap.climberChassisExtendLimitSwitch);
     private static final DigitalInput limitSwitchRetract = new DigitalInput(RobotMap.climberChassisRetractLimitSwitch);
-    
+    //private static final DigitalInput interLimitSwitchOpen = new DigitalInput(RobotMap.limitSwitchCrashPreventer);    
 
     // Initialize your subsystem here
     public ClimberChassis() {
@@ -64,10 +65,14 @@ public class ClimberChassis extends PIDSubsystem {
     public void Stop(){
         climberChassis.set(Relay.Value.kOff);
     }
+    
     public boolean isExtended() {
-        return limitSwitchExtend.get();
+        return (limitSwitchExtend.get());
     }
     public boolean isRetracted() {
         return limitSwitchRetract.get();
+    }
+    public double getAxisValue(){
+        return OI.joystick2.getY();
     }
 }

@@ -24,6 +24,7 @@ public class RearWheelRetract extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         rearWheel.retract();
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +41,7 @@ public class RearWheelRetract extends CommandBase {
     protected void interrupted() {
     }
      private boolean isRetracted() {
-        if (rearWheel.isRetracted() || isTimedOut()){
+        if (rearWheel.isRetracted() || isTimedOut() || rearWheel.isHit()){
             return true;
         }else {
             return false;
