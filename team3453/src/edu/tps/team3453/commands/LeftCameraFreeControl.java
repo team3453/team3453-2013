@@ -4,43 +4,35 @@
  */
 package edu.tps.team3453.commands;
 
-import edu.tps.team3453.RobotMap;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Victor;
-
 /**
  *
- * @author Madeline
+ * @author digimo
  */
-public class DriveTeleop extends CommandBase {
-    SpeedController leftMotor;
-    SpeedController rightMotor;
-    RobotDrive drive;
-    Joystick stick;
+public class LeftCameraFreeControl extends CommandBase {
     
-    public DriveTeleop() {
+    public LeftCameraFreeControl() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-        requires(leftDriveMotor);
-        requires(rightDriveMotor);
+        requires(tiltServo);
+        requires(panServo);
         requires(leftJoystickToken);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        leftMotor = leftDriveMotor.getMotor();
-        rightMotor = rightDriveMotor.getMotor();
-        drive = new RobotDrive(leftMotor, rightMotor);
-        stick = new Joystick(RobotMap.leftJoystick);
-        
-        System.out.println("DriveTeleop is executing");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        drive.arcadeDrive(stick);
+        if(panServo.getJoystickValueX() >= 0.150){
+            panServo.panServoClockwise();
+        } else if(panServo.getJoystickValueX() <= -0.150){
+            panServo.panServoCounterClockwise();
+        } else if(tiltServo.getJoystickValueY() >= 0.150){
+            tiltServo.tiltServoClockwise();
+        } else if(tiltServo.getJoystickValueY() <= -0.150){
+            tiltServo.tiltServoCounterClockwise();
+        
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -50,7 +42,6 @@ public class DriveTeleop extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        System.out.println("DriveTeleop is finished");
     }
 
     // Called when another command which requires one or more of the same

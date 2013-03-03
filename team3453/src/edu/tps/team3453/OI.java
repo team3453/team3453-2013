@@ -2,6 +2,7 @@
 package edu.tps.team3453;
 
 import edu.tps.team3453.commands.ArmDoNothing;
+import edu.tps.team3453.commands.ArmJoystickControl;
 import edu.tps.team3453.commands.DumperArmBack;
 import edu.tps.team3453.commands.DumperArmForward;
 import edu.tps.team3453.commands.LidClose;
@@ -25,11 +26,14 @@ import edu.tps.team3453.commands.LeftMotorAt20;
 import edu.tps.team3453.commands.LeftMotorDown5;
 import edu.tps.team3453.commands.LeftMotorUp5;
 
-import edu.tps.team3453.commands.CameraFreeControl;
+import edu.tps.team3453.commands.LeftCameraFreeControl;
+import edu.tps.team3453.commands.RightCameraFreeControl;
 import edu.tps.team3453.commands.ClimberChassisBackward;
 import edu.tps.team3453.commands.ClimberChassisForward;
 import edu.tps.team3453.commands.ClimberChassisJoystickControl;
+import edu.tps.team3453.commands.DriveTeleop;
 import edu.tps.team3453.commands.KillSwitch;
+import edu.tps.team3453.commands.LeftArmJoystickControl;
 
 import edu.tps.team3453.commands.PanServoClockwise;
 import edu.tps.team3453.commands.PanServoCounterClockwise;
@@ -44,6 +48,7 @@ import edu.tps.team3453.commands.TiltServoCounterClockwise;
 
 import edu.tps.team3453.commands.TestLimitSwitchTesting;
 import edu.tps.team3453.commands.RearWheelJoystickControl;
+import edu.tps.team3453.commands.RightArmJoystickControl;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -69,6 +74,7 @@ public class OI {
     Button b10 = new JoystickButton (joystick, 10);
     Button b11 = new JoystickButton (joystick, 11);
     Button b12 = new JoystickButton (joystick, 12);
+    Button joystick2b1 = new JoystickButton (joystick2, 1);
     Button joystick2b2 = new JoystickButton (joystick2, 2);
     Button joystick2b3 = new JoystickButton (joystick2, 3);
     Button joystick2b4 = new JoystickButton (joystick2, 4);
@@ -83,6 +89,40 @@ public class OI {
         //b3.whenPressed(new ArmReach());
         //b2.whenPressed(new ArmPull());
         
+        // Driver - Joystick 1
+        // TeleOp Drive
+        // Left Camera Free Control
+        // KillSwitch
+        b1.whenPressed(new CameraPyramidApproach());
+        b2.whenPressed(new KillSwitch());
+        b3.whenPressed(new KillSwitch());
+        b4.whenPressed(new DriveTeleop());
+        b5.whenPressed(new LeftCameraFreeControl());
+        
+       
+        // Operator - Joystick 2
+        // Arm Control
+        // Right Camera Free Control
+        
+        // Climber Chassis Control
+        // RearWheel Control
+        // Left Arm Control
+        // Right Arm Control
+        // KillSwitch
+        // Camera Pyramid
+        // Dumper
+        // Lid 
+        joystick2b1.whenPressed(new CameraWhileOnPyramid());
+        joystick2b2.whenPressed(new KillSwitch());
+        joystick2b3.whenPressed(new KillSwitch());
+        joystick2b4.whenPressed(new ArmJoystickControl());
+        joystick2b5.whenPressed(new RightCameraFreeControl());
+        joystick2b6.whenPressed(new ClimberChassisJoystickControl());
+        joystick2b7.whenPressed(new RearWheelJoystickControl());
+        joystick2b8.whenPressed(new LeftArmJoystickControl());
+        joystick2b9.whenPressed(new RightArmJoystickControl());
+        
+/* For Testing only        
         b6.whenPressed(new DumperArmForward());
         b7.whenPressed(new DumperArmBack());
         b8.whenPressed(new CameraPyramidApproach());
@@ -92,8 +132,9 @@ public class OI {
         b10.whenPressed(new LidOpen());
         b11.whenPressed(new LidClose());
         b12.whenPressed(new TestLimitSwitchTesting());
+*/
         
-/*
+/* For Testing only
         joystick2b2.whenPressed(new SolenoidLock());
         joystick2b3.whenPressed(new SolenoidUnlock());
         joystick2b4.whenPressed(new ClimberChassisForward());
@@ -108,7 +149,9 @@ public class OI {
         b5.whenPressed(new PanServoClockwise());
         //b3.whenPressed(new TiltServoClockwise());
 */
-        joystick2b2.whenPressed(new CameraFreeControl());
+        
+/* For Testing only 
+        joystick2b2.whenPressed(new LeftCameraFreeControl());
         joystick2b3.whenPressed(new SolenoidLock());
         joystick2b4.whenPressed(new SolenoidUnlock());
         joystick2b5.whenPressed(new ClimberChassisForward());
@@ -127,6 +170,7 @@ public class OI {
 
         //b2.whenPressed(new TiltServoCounterClockwise());
         b2.whenPressed(new ClimberChassisJoystickControl());
+ */
         // Arm diagnostics
         /*
         b5.whenPressed(new ArmDoNothing());

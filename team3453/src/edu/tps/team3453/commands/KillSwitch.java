@@ -4,6 +4,8 @@
  */
 package edu.tps.team3453.commands;
 
+import edu.tps.team3453.OI;
+
 /**
  *
  * @author digimo
@@ -32,23 +34,28 @@ public class KillSwitch extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        climberChassis.Stop();
-        rearWheel.stop();
+        if ((OI.joystick.getRawButton(2) && OI.joystick.getRawButton(3)) ||
+               (OI.joystick2.getRawButton(2) && OI.joystick2.getRawButton(3))) {
+            
+            climberChassis.Stop();
+            rearWheel.stop();
 
-        leftArm.stop();
-        rightArm.stop();
-        leftArm.disable();
-        rightArm.disable();
-        leftSolenoid.Lock();
-        rightSolenoid.Lock();
-        
-        leftDriveMotor.off();
-        leftDriveMotor.disable();
-        rightDriveMotor.off();
-        rightDriveMotor.disable();
+            leftArm.stop();
+            rightArm.stop();
+            leftArm.disable();
+            rightArm.disable();
+            leftSolenoid.Lock();
+            rightSolenoid.Lock();
 
-        lid.Stop();
-        dumperArm.Stop();
+            leftDriveMotor.off();
+            leftDriveMotor.disable();
+            rightDriveMotor.off();
+            rightDriveMotor.disable();
+
+            lid.Stop();
+            dumperArm.Stop();
+            
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
