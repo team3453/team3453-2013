@@ -11,6 +11,7 @@ import edu.tps.team3453.commands.SolenoidUnlock;
 import edu.tps.team3453.commands.CameraWhileOnPyramid;
 import edu.tps.team3453.commands.ArmPull;
 import edu.tps.team3453.commands.ArmReach;
+import edu.tps.team3453.commands.CameraFreeControl;
 import edu.tps.team3453.commands.ClimberChassisBackward;
 import edu.tps.team3453.commands.ClimberChassisForward;
 import edu.tps.team3453.commands.ClimberChassisJoystickControl;
@@ -56,6 +57,7 @@ public class OI {
     Button joystick2b7 = new JoystickButton (joystick2, 7);
     Button joystick2b8 = new JoystickButton (joystick2, 8);
     Button joystick2b9 = new JoystickButton (joystick2, 9);
+    Button joystick2b10 = new JoystickButton (joystick2, 10);
     public OI(){
         //b3.whenPressed(new ArmReach());
         //b2.whenPressed(new ArmPull());
@@ -70,16 +72,18 @@ public class OI {
         b11.whenPressed(new LidClose());
         b12.whenPressed(new TestLimitSwitchTesting());
         
-        joystick2b2.whenPressed(new SolenoidLock());
-        joystick2b3.whenPressed(new SolenoidUnlock());
-        joystick2b4.whenPressed(new ClimberChassisForward());
-        joystick2b5.whenPressed(new ClimberChassisBackward());
-        joystick2b6.whenPressed(new controlRearWheel());
-        joystick2b7.whenPressed(new KillSwitch());
+        joystick2b2.whenPressed(new CameraFreeControl());
+        joystick2b3.whenPressed(new SolenoidLock());
+        joystick2b4.whenPressed(new SolenoidUnlock());
+        joystick2b5.whenPressed(new ClimberChassisForward());
+        joystick2b6.whenPressed(new ClimberChassisBackward());
+        joystick2b7.whenPressed(new controlRearWheel());
+        joystick2b8.whenPressed(new KillSwitch());
         // joystick2b6.whenPressed(new RearWheelExtend());
         // joystick2b7.whenPressed(new RearWheelRetract());
-        joystick2b8.whenPressed(new ArmPull());
-        joystick2b9.whenPressed(new ArmReach());
+        joystick2b9.whenPressed(new ArmPull());
+        joystick2b10.whenPressed(new ArmReach());
+        
         
         b4.whenPressed(new PanServoCounterClockwise());
         b5.whenPressed(new PanServoClockwise());
