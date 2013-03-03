@@ -38,7 +38,7 @@ public class RobotMap {
     
     //Second DSC
     public static final int limitSwitchRearWheelExtend = 1;
-    public static final int limitSwitchRearWheelRetract = 2;
+    public static final int limitSwitchRearWheelPolePosition = 2;
     public static final int limitSwitchLeftArmReach = 3;
     public static final int limitSwitchLeftArmPull = 4;
     public static final int limitSwitchRightArmReach = 5;
