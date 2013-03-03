@@ -43,7 +43,7 @@ import edu.tps.team3453.commands.TiltServoClockwise;
 import edu.tps.team3453.commands.TiltServoCounterClockwise;
 
 import edu.tps.team3453.commands.TestLimitSwitchTesting;
-import edu.tps.team3453.commands.controlRearWheel;
+import edu.tps.team3453.commands.RearWheelJoystickControl;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -113,7 +113,7 @@ public class OI {
         joystick2b4.whenPressed(new SolenoidUnlock());
         joystick2b5.whenPressed(new ClimberChassisForward());
         joystick2b6.whenPressed(new ClimberChassisBackward());
-        joystick2b7.whenPressed(new controlRearWheel());
+        joystick2b7.whenPressed(new RearWheelJoystickControl());
         joystick2b8.whenPressed(new KillSwitch());
         // joystick2b6.whenPressed(new RearWheelExtend());
         // joystick2b7.whenPressed(new RearWheelRetract());

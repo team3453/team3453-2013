@@ -12,21 +12,56 @@ import edu.tps.team3453.OI;
  */
 public class ArmJoystickControl extends CommandBase {
     
+    private boolean isForwards, isBackwards;
+    
     public ArmJoystickControl() {
         requires(leftArm);
-        requires(token);
         requires(rightArm);
+        requires(leftSolenoid);
+        requires(rightSolenoid);
+        requires(rightJoystickToken);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        isForwards = false;
+        isBackwards = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        if(OI.joystick2.getY() >=.150){
+            leftArm.setSetpoint(2000);
+            rightArm.setSetpoint(2000);
+            leftSolenoid.Unlock();
+            leftArm.enable();
+            rightSolenoid.Unlock();
+            rightArm.enable();
+            isForwards = true;
+            isBackwards = false;
+        }
+        else if (OI.joystick2.getY() <=-.150) {
+            leftArm.setSetpoint(-2000);
+            rightArm.setSetpoint(-2000);
+            leftSolenoid.Unlock();
+            leftArm.enable();
+            rightSolenoid.Unlock();
+            rightArm.enable();
+            isForwards = false;
+            isBackwards = true;
+        }
+        else{
+            leftArm.disable();
+            leftArm.stop();
+            leftSolenoid.Lock();
+            rightArm.disable();
+            rightArm.stop();
+            rightSolenoid.Lock();
+            isForwards = false;
+            isBackwards = false;
+        }
         
     }
 
@@ -37,17 +72,34 @@ public class ArmJoystickControl extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+            isForwards = false;
+            isBackwards = false;
+            leftArm.disable();
+            leftArm.stop();
+            leftSolenoid.Lock();
+            rightArm.disable();
+            rightArm.stop();
+            rightSolenoid.Lock();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+            isForwards = false;
+            isBackwards = false;
+            leftArm.disable();
+            leftArm.stop();
+            leftSolenoid.Lock();
+            rightArm.disable();
+            rightArm.stop();
+            rightSolenoid.Lock();
     }
     public boolean isLimitPressed(){
-        if (leftArm.isExtended() || rightArm.isExtended() || leftArm.isRetracted() || rightArm.isRetracted()){
+        if ((leftArm.isExtended() || rightArm.isExtended()) && isForwards){
            return true; 
-        }
-        else{
+        } else if((leftArm.isRetracted() || rightArm.isRetracted()) && isBackwards) {
+            return true;
+        } else {
             return false;
         }
             

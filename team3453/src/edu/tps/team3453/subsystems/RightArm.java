@@ -51,7 +51,7 @@ public class RightArm extends PIDSubsystem {
         
         rateArray = new double[10];
         rightEncoder.setPIDSourceParameter(Encoder.PIDSourceParameter.kRate);
-        setAbsoluteTolerance(2.0);
+        setAbsoluteTolerance(50.0);
         
         disable();
         rightEncoder.stop();

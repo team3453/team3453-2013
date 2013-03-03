@@ -72,7 +72,7 @@ private static final DigitalInput interLimitSwitchOpen = new DigitalInput(RobotM
         return limitSwitchRearWheelRetract.get();
     }
     public double getJoystickValue(){
-        return OI.joystick.getY();
+        return OI.joystick2.getY();
         
         }
     
