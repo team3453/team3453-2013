@@ -12,6 +12,7 @@ public class ClimberChassisJoystickControl extends CommandBase {
     
     public ClimberChassisJoystickControl() {
         requires(climberChassis);
+        requires(token);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

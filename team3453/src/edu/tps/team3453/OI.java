@@ -89,7 +89,7 @@ public class OI {
         joystick2b3.whenPressed(new SolenoidUnlock());
         joystick2b4.whenPressed(new ClimberChassisForward());
         joystick2b5.whenPressed(new ClimberChassisBackward());
-        joystick2b6.whenPressed(new controlRearWheel());
+        b3.whenPressed(new controlRearWheel());
         // joystick2b6.whenPressed(new RearWheelExtend());
         // joystick2b7.whenPressed(new RearWheelRetract());
         joystick2b8.whenPressed(new ArmPull());
@@ -97,7 +97,7 @@ public class OI {
         
         b4.whenPressed(new PanServoCounterClockwise());
         b5.whenPressed(new PanServoClockwise());
-        b3.whenPressed(new TiltServoClockwise());
+        //b3.whenPressed(new TiltServoClockwise());
         //b2.whenPressed(new TiltServoCounterClockwise());
         b2.whenPressed(new ClimberChassisJoystickControl());
         // Arm diagnostics
