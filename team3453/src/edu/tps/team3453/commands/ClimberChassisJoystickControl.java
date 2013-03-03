@@ -10,6 +10,8 @@ package edu.tps.team3453.commands;
  */
 public class ClimberChassisJoystickControl extends CommandBase {
     
+    private boolean isForwards, isBackwards;
+    
     public ClimberChassisJoystickControl() {
         requires(climberChassis);
         requires(rightJoystickToken);
@@ -19,18 +21,27 @@ public class ClimberChassisJoystickControl extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        isForwards = false;
+        isBackwards = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(climberChassis.getAxisValue() >=.150){
             climberChassis.Forward();
+            isForwards = true;
+            isBackwards = false;
         }
         else if (climberChassis.getAxisValue() <=-.150) {
             climberChassis.Back();
+            isForwards = false;
+            isBackwards = true;
         }
         else{
             climberChassis.Stop();
+            isForwards = false;
+            isBackwards = false;
+            
         }
     }
 
@@ -41,18 +52,23 @@ public class ClimberChassisJoystickControl extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+            isForwards = false;
+            isBackwards = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+            isForwards = false;
+            isBackwards = false;
     }
-    public boolean isLimitPressed(){
-        if (climberChassis.isExtended() || climberChassis.isRetracted()){
+    public boolean isLimitPressed() {
+        if (climberChassis.isExtended() && isForwards) {
             return true;
+        } else if(climberChassis.isRetracted() && isBackwards) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    else{
-    return false;
-}
-}
 }

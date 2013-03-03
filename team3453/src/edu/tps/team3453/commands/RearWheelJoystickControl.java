@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.Relay;
  */
 public class RearWheelJoystickControl extends CommandBase {
     
+    private boolean isForwards, isBackwards;
+    
     public RearWheelJoystickControl() {
         // Use requires() here to declare subsystem dependencies
         requires(rearWheel);
@@ -20,16 +22,24 @@ public class RearWheelJoystickControl extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        isForwards = false;
+        isBackwards = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(rearWheel.getJoystickValue() >= 0.150){
            rearWheel.extend();
+           isForwards = true;
+           isBackwards = false;
         } else if (rearWheel.getJoystickValue() <= -0.150){
            rearWheel.retract();
+           isForwards = false;
+           isBackwards = true;
         } else {
            rearWheel.stop();
+           isForwards = false;
+           isBackwards = false;
         }
     
     }
@@ -42,15 +52,21 @@ public class RearWheelJoystickControl extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+           isForwards = false;
+           isBackwards = false;
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+           isForwards = false;
+           isBackwards = false;
     }
     public boolean isLimitPressed(){
-        if (rearWheel.isExtended() || rearWheel.isRetracted()) {
+        if (rearWheel.isExtended() && isForwards) {
         return true;
+    } else if(rearWheel.isRetracted() && isBackwards) {
+        return true; 
     } else { 
         return false;
     }
