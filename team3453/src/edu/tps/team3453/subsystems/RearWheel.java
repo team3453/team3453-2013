@@ -66,7 +66,7 @@ private static final DigitalInput interLimitSwitchOpen = new DigitalInput(RobotM
         rearWheel.set(Relay.Value.kOff);
     }
     public boolean isExtended(){
-        return (limitSwitchRearWheelExtend.get() || interLimitSwitchOpen.get());
+        return (limitSwitchRearWheelExtend.get());
     }
     public boolean isRetracted(){
         return limitSwitchRearWheelRetract.get();
@@ -75,5 +75,9 @@ private static final DigitalInput interLimitSwitchOpen = new DigitalInput(RobotM
         return OI.joystick.getY();
         
         }
+    
+    public boolean isHit() {
+        return interLimitSwitchOpen.get();
+    }
     }
 

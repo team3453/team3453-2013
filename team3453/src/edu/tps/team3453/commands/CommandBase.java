@@ -16,6 +16,7 @@ import edu.tps.team3453.subsystems.RightArm;
 import edu.tps.team3453.subsystems.RightSolenoid;
 import edu.tps.team3453.subsystems.TiltServo;
 import edu.tps.team3453.subsystems.TestLimitSwitch;
+import edu.tps.team3453.subsystems.Token;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -39,6 +40,7 @@ public abstract class CommandBase extends Command {
     public static final RightSolenoid rightSolenoid = new RightSolenoid();
     public static final ClimberChassis climberChassis = new ClimberChassis();
     public static final RearWheel rearWheel = new RearWheel();
+    public static final Token token = new Token();
     
     public static final TestLimitSwitch testLimitSwitch = new TestLimitSwitch();
     

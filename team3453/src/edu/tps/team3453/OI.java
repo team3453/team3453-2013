@@ -1,6 +1,7 @@
 
 package edu.tps.team3453;
 
+import edu.tps.team3453.commands.ArmDoNothing;
 import edu.tps.team3453.commands.DumperArmBack;
 import edu.tps.team3453.commands.DumperArmForward;
 import edu.tps.team3453.commands.LidClose;
@@ -11,6 +12,19 @@ import edu.tps.team3453.commands.SolenoidUnlock;
 import edu.tps.team3453.commands.CameraWhileOnPyramid;
 import edu.tps.team3453.commands.ArmPull;
 import edu.tps.team3453.commands.ArmReach;
+
+import edu.tps.team3453.commands.ClimberChassisBackward;
+import edu.tps.team3453.commands.ClimberChassisForward;
+import edu.tps.team3453.commands.ClimberChassisJoystickControl;
+import edu.tps.team3453.commands.LeftArmDown5;
+import edu.tps.team3453.commands.LeftArmUp5;
+import edu.tps.team3453.commands.LeftMotorAt10;
+import edu.tps.team3453.commands.LeftMotorAt12;
+import edu.tps.team3453.commands.LeftMotorAt15;
+import edu.tps.team3453.commands.LeftMotorAt20;
+import edu.tps.team3453.commands.LeftMotorDown5;
+import edu.tps.team3453.commands.LeftMotorUp5;
+
 import edu.tps.team3453.commands.CameraFreeControl;
 import edu.tps.team3453.commands.ClimberChassisBackward;
 import edu.tps.team3453.commands.ClimberChassisForward;
@@ -20,14 +34,20 @@ import edu.tps.team3453.commands.KillSwitch;
 import edu.tps.team3453.commands.PanServoClockwise;
 import edu.tps.team3453.commands.PanServoCounterClockwise;
 
-
+import edu.tps.team3453.commands.RearWheelExtend;
+import edu.tps.team3453.commands.RearWheelRetract;
+import edu.tps.team3453.commands.RightArmDown5;
+import edu.tps.team3453.commands.RightArmUp5;
+import edu.tps.team3453.commands.RunArmsAtCurrent;
 import edu.tps.team3453.commands.TiltServoClockwise;
+import edu.tps.team3453.commands.TiltServoCounterClockwise;
 
 import edu.tps.team3453.commands.TestLimitSwitchTesting;
 import edu.tps.team3453.commands.controlRearWheel;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -58,6 +78,7 @@ public class OI {
     Button joystick2b8 = new JoystickButton (joystick2, 8);
     Button joystick2b9 = new JoystickButton (joystick2, 9);
     Button joystick2b10 = new JoystickButton (joystick2, 10);
+
     public OI(){
         //b3.whenPressed(new ArmReach());
         //b2.whenPressed(new ArmPull());
@@ -72,6 +93,21 @@ public class OI {
         b11.whenPressed(new LidClose());
         b12.whenPressed(new TestLimitSwitchTesting());
         
+/*
+        joystick2b2.whenPressed(new SolenoidLock());
+        joystick2b3.whenPressed(new SolenoidUnlock());
+        joystick2b4.whenPressed(new ClimberChassisForward());
+        joystick2b5.whenPressed(new ClimberChassisBackward());
+        b3.whenPressed(new controlRearWheel());
+        // joystick2b6.whenPressed(new RearWheelExtend());
+        // joystick2b7.whenPressed(new RearWheelRetract());
+        joystick2b8.whenPressed(new ArmPull());
+        joystick2b9.whenPressed(new ArmReach());
+        
+        b4.whenPressed(new PanServoCounterClockwise());
+        b5.whenPressed(new PanServoClockwise());
+        //b3.whenPressed(new TiltServoClockwise());
+*/
         joystick2b2.whenPressed(new CameraFreeControl());
         joystick2b3.whenPressed(new SolenoidLock());
         joystick2b4.whenPressed(new SolenoidUnlock());
@@ -88,6 +124,7 @@ public class OI {
         b4.whenPressed(new PanServoCounterClockwise());
         b5.whenPressed(new PanServoClockwise());
         b3.whenPressed(new TiltServoClockwise());
+
         //b2.whenPressed(new TiltServoCounterClockwise());
         b2.whenPressed(new ClimberChassisJoystickControl());
         // Arm diagnostics

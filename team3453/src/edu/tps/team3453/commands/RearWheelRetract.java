@@ -41,7 +41,7 @@ public class RearWheelRetract extends CommandBase {
     protected void interrupted() {
     }
      private boolean isRetracted() {
-        if (rearWheel.isRetracted() || isTimedOut()){
+        if (rearWheel.isRetracted() || isTimedOut() || rearWheel.isHit()){
             return true;
         }else {
             return false;
