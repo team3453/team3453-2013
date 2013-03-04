@@ -17,15 +17,15 @@ public class KillSwitch extends CommandBase {
        requires(leftJoystickToken);
        requires(rightJoystickToken);
        requires(climberChassis);
-       requires(dumperArm);
        requires(leftArm);
        requires(rightArm);
        requires(leftDriveMotor);
-       requires(lid);
-       requires(rearWheel);
        requires(rightDriveMotor);
        requires(leftSolenoid);
        requires(rightSolenoid);
+       requires(lid);
+       requires(rearWheel);
+       requires(dumperArm);
     }
 
     // Called just before this Command runs the first time
