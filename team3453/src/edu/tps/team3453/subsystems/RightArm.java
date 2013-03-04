@@ -117,7 +117,9 @@ public class RightArm extends PIDSubsystem {
         rightArm.set(-0.3);
     }
     public void rightArmPull(){
-        rightArm.set(0.3);
+        // changed from 0.3 to 0.4
+        // increased from 0.4 to 0.7
+        rightArm.set(0.7);
     }
     public void stop(){
         disable();

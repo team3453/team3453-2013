@@ -36,7 +36,7 @@ public class LeftArmJoystickControl extends CommandBase {
             leftSolenoid.Unlock();
             leftArm.enable();
             */
-            leftArm.leftArmReach();
+            leftArm.leftArmPull();
             
             isForwards = true;
             isBackwards = false;
@@ -47,7 +47,7 @@ public class LeftArmJoystickControl extends CommandBase {
             leftSolenoid.Unlock();
             leftArm.enable();
             */
-            leftArm.leftArmPull();
+            leftArm.leftArmReach();
             isForwards = false;
             isBackwards = true;
         }
@@ -84,10 +84,10 @@ public class LeftArmJoystickControl extends CommandBase {
             leftArm.stop();
             leftSolenoid.Lock();
     }
-    public boolean isLimitPressed(){
-        if ((leftArm.isExtended()) && isForwards){
+    public boolean isLimitPressed() {
+        if ((leftArm.isRetracted()) && isForwards){
            return true; 
-        } else if((leftArm.isRetracted()) && isBackwards) {
+        } else if((leftArm.isExtended()) && isBackwards) {
             return true;
         } else {
             return false;
