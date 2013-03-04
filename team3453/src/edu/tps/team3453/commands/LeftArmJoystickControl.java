@@ -31,16 +31,23 @@ public class LeftArmJoystickControl extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(OI.joystick2.getY() >=.150){
+            /*
             leftArm.setSetpoint(2000);
             leftSolenoid.Unlock();
             leftArm.enable();
+            */
+            leftArm.leftArmPull();
+            
             isForwards = true;
             isBackwards = false;
         }
         else if (OI.joystick2.getY() <=-.150) {
+            /*
             leftArm.setSetpoint(-2000);
             leftSolenoid.Unlock();
             leftArm.enable();
+            */
+            leftArm.leftArmReach();
             isForwards = false;
             isBackwards = true;
         }
@@ -77,10 +84,10 @@ public class LeftArmJoystickControl extends CommandBase {
             leftArm.stop();
             leftSolenoid.Lock();
     }
-    public boolean isLimitPressed(){
-        if ((leftArm.isExtended()) && isForwards){
+    public boolean isLimitPressed() {
+        if ((leftArm.isRetracted()) && isForwards){
            return true; 
-        } else if((leftArm.isRetracted()) && isBackwards) {
+        } else if((leftArm.isExtended()) && isBackwards) {
             return true;
         } else {
             return false;
