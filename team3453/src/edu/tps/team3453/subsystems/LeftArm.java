@@ -116,10 +116,10 @@ public class LeftArm extends PIDSubsystem {
     }
     
     public void leftArmReach(){
-        leftArm.set(0.2);
+        leftArm.set(0.3);
     }
     public void leftArmPull(){
-        leftArm.set(-0.2);
+        leftArm.set(-0.3);
     }
     public void stop(){
         disable();

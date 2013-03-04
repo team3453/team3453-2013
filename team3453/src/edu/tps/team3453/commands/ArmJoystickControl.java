@@ -33,22 +33,30 @@ public class ArmJoystickControl extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if(OI.joystick2.getY() >=.150){
+            /*
             leftArm.setSetpoint(2000);
-            rightArm.setSetpoint(2000);
-            leftSolenoid.Unlock();
-            leftArm.enable();
-            rightSolenoid.Unlock();
-            rightArm.enable();
-            isForwards = true;
-            isBackwards = false;
-        }
-        else if (OI.joystick2.getY() <=-.150) {
-            leftArm.setSetpoint(-2000);
             rightArm.setSetpoint(-2000);
             leftSolenoid.Unlock();
             leftArm.enable();
             rightSolenoid.Unlock();
             rightArm.enable();
+            */
+            leftArm.leftArmReach();
+            rightArm.rightArmReach();
+            isForwards = true;
+            isBackwards = false;
+        }
+        else if (OI.joystick2.getY() <=-.150) {
+            /*
+            leftArm.setSetpoint(-2000);
+            rightArm.setSetpoint(2000);
+            leftSolenoid.Unlock();
+            leftArm.enable();
+            rightSolenoid.Unlock();
+            rightArm.enable();
+            */
+            leftArm.leftArmPull();
+            rightArm.rightArmPull();
             isForwards = false;
             isBackwards = true;
         }
