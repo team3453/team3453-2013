@@ -28,18 +28,22 @@ public class RearWheelJoystickControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(rearWheel.getJoystickValue() >= 0.150){
-           rearWheel.extend();
+        if(rearWheel.getJoystickValue() <= -0.150){
            isForwards = true;
            isBackwards = false;
-        } else if (rearWheel.getJoystickValue() <= -0.150){
-           rearWheel.retract();
+           if(!isLimitPressed()) {
+               rearWheel.extend();
+           }
+        } else if (rearWheel.getJoystickValue() >= 0.150){
            isForwards = false;
            isBackwards = true;
+           if(!isLimitPressed()) {
+               rearWheel.retract();
+           }
         } else {
-           rearWheel.stop();
            isForwards = false;
            isBackwards = false;
+           rearWheel.stop();
         }
     
     }
