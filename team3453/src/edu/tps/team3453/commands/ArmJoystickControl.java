@@ -13,6 +13,7 @@ import edu.tps.team3453.OI;
 public class ArmJoystickControl extends CommandBase {
     
     private boolean isRetracting, isExtending;
+    private double yVal;
     
     public ArmJoystickControl() {
         requires(leftArm);
@@ -32,10 +33,12 @@ public class ArmJoystickControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(OI.joystick2.getY() >=.150){
+        yVal = OI.joystick2.getY();
+        
+        if(yVal >= .150){
             /*
-            leftArm.setSetpoint(2000);
-            rightArm.setSetpoint(-2000);
+            leftArm.setSetpoint(-2000);
+            rightArm.setSetpoint(2000);
             leftSolenoid.Unlock();
             leftArm.enable();
             rightSolenoid.Unlock();
@@ -44,14 +47,36 @@ public class ArmJoystickControl extends CommandBase {
             isRetracting = true;
             isExtending = false;
             if(!isLimitPressed()) {
+                if (yVal <= 0.3) {
+                    leftArm.setPullMin();
+                    rightArm.setPullMin();
+                } else if (yVal <= 0.4) {
+                    leftArm.setPullLow();
+                    rightArm.setPullLow();
+                } else if (yVal <= 0.5) {
+                    leftArm.setPullMidLow();
+                    rightArm.setPullMidLow();
+                } else if (yVal <= 0.6) {
+                    leftArm.setPullMid();
+                    rightArm.setPullMid();
+                } else if (yVal <= 0.7) {
+                    leftArm.setPullMidHigh();
+                    rightArm.setPullMidHigh();
+                } else if (yVal <= 0.8) {
+                    leftArm.setPullHigh();
+                    rightArm.setPullHigh();
+                } else {
+                    leftArm.setPullMax();
+                    rightArm.setPullMax();
+                }
                 leftArm.leftArmPull();
                 rightArm.rightArmPull();
             }
         }
-        else if (OI.joystick2.getY() <=-.150) {
+        else if (yVal <= -.150) {
             /*
-            leftArm.setSetpoint(-2000);
-            rightArm.setSetpoint(2000);
+            leftArm.setSetpoint(2000);
+            rightArm.setSetpoint(-2000);
             leftSolenoid.Unlock();
             leftArm.enable();
             rightSolenoid.Unlock();

@@ -13,6 +13,7 @@ import edu.tps.team3453.OI;
 public class LeftArmJoystickControl extends CommandBase {
     
     private boolean isRetracting, isExtending;
+    private double yVal;
     
     public LeftArmJoystickControl() {
         requires(leftArm);
@@ -30,22 +31,37 @@ public class LeftArmJoystickControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(OI.joystick2.getY() >= 0.150){
+        if(yVal >= 0.150){
             /*
-            leftArm.setSetpoint(2000);
+            leftArm.setSetpoint(-2000);
             leftSolenoid.Unlock();
             leftArm.enable();
             */
             isRetracting = true;
             isExtending = false;
             if(!isLimitPressed()) {
+                if (yVal <= 0.3) {
+                    leftArm.setPullMin();
+                } else if (yVal <= 0.4) {
+                    leftArm.setPullLow();
+                } else if (yVal <= 0.5) {
+                    leftArm.setPullMidLow();
+                } else if (yVal <= 0.6) {
+                    leftArm.setPullMid();
+                } else if (yVal <= 0.7) {
+                    leftArm.setPullMidHigh();
+                } else if (yVal <= 0.8) {
+                    leftArm.setPullHigh();
+                } else {
+                    leftArm.setPullMax();
+                }
                 leftArm.leftArmPull();
             }
             
         }
-        else if (OI.joystick2.getY() <= -0.150) {
+        else if (yVal <= -0.150) {
             /*
-            leftArm.setSetpoint(-2000);
+            leftArm.setSetpoint(2000);
             leftSolenoid.Unlock();
             leftArm.enable();
             */
