@@ -57,10 +57,10 @@ private static final DigitalInput interLimitSwitchOpen = new DigitalInput(RobotM
     }
     
     public void extend(){
-        rearWheel.set(Relay.Value.kForward);
+        rearWheel.set(Relay.Value.kReverse);
     }
     public void retract(){
-        rearWheel.set(Relay.Value.kReverse);
+        rearWheel.set(Relay.Value.kForward);
     }
     public void stop(){
         rearWheel.set(Relay.Value.kOff);

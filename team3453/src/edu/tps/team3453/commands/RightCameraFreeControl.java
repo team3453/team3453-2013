@@ -23,13 +23,13 @@ public class RightCameraFreeControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(panServo.getJoystickValueX() >= 0.150){
+        if(panServo.getJoystickValueX() <= -0.150){
             panServo.panServoClockwise();
-        } else if(panServo.getJoystickValueX() <= -0.150){
+        } else if(panServo.getJoystickValueX() >= 0.150){
             panServo.panServoCounterClockwise();
-        } else if(tiltServo.getJoystickValueY() >= 0.150){
-            tiltServo.tiltServoClockwise();
         } else if(tiltServo.getJoystickValueY() <= -0.150){
+            tiltServo.tiltServoClockwise();
+        } else if(tiltServo.getJoystickValueY() >= 0.150){
             tiltServo.tiltServoCounterClockwise();
         
         }

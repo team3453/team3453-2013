@@ -79,7 +79,7 @@ public class OI {
     Button joystick2b3 = new JoystickButton (joystick2, 3);
     Button joystick2b4 = new JoystickButton (joystick2, 4);
     Button joystick2b5 = new JoystickButton (joystick2, 5);
-    Button joystick2b6 = new JoystickButton (joystick2,6);
+    Button joystick2b6 = new JoystickButton (joystick2, 6);
     Button joystick2b7 = new JoystickButton (joystick2, 7);
     Button joystick2b8 = new JoystickButton (joystick2, 8);
     Button joystick2b9 = new JoystickButton (joystick2, 9);
@@ -98,7 +98,7 @@ public class OI {
         b3.whenPressed(new KillSwitch());
         b4.whenPressed(new DriveTeleop());
         b5.whenPressed(new LeftCameraFreeControl());
-        
+        //Joystick Axis- Forward= negative, Backwards= positive for attack3 and extreme3DPro
        
         // Operator - Joystick 2
         // Arm Control

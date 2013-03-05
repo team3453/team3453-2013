@@ -12,7 +12,7 @@ import edu.tps.team3453.OI;
  */
 public class ArmJoystickControl extends CommandBase {
     
-    private boolean isForwards, isBackwards;
+    private boolean isRetracting, isExtending;
     
     public ArmJoystickControl() {
         requires(leftArm);
@@ -26,8 +26,8 @@ public class ArmJoystickControl extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        isForwards = false;
-        isBackwards = false;
+        isRetracting = false;
+        isExtending = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -41,10 +41,12 @@ public class ArmJoystickControl extends CommandBase {
             rightSolenoid.Unlock();
             rightArm.enable();
             */
-            leftArm.leftArmPull();
-            rightArm.rightArmPull();
-            isForwards = true;
-            isBackwards = false;
+            isRetracting = true;
+            isExtending = false;
+            if(!isLimitPressed()) {
+                leftArm.leftArmPull();
+                rightArm.rightArmPull();
+            }
         }
         else if (OI.joystick2.getY() <=-.150) {
             /*
@@ -55,10 +57,12 @@ public class ArmJoystickControl extends CommandBase {
             rightSolenoid.Unlock();
             rightArm.enable();
             */
-            leftArm.leftArmReach();
-            rightArm.rightArmReach();
-            isForwards = false;
-            isBackwards = true;
+            isRetracting = false;
+            isExtending = true;
+            if(!isLimitPressed()) {
+                leftArm.leftArmReach();
+                rightArm.rightArmReach();
+            }
         }
         else{
             leftArm.disable();
@@ -67,8 +71,8 @@ public class ArmJoystickControl extends CommandBase {
             rightArm.disable();
             rightArm.stop();
             rightSolenoid.Lock();
-            isForwards = false;
-            isBackwards = false;
+            isRetracting = false;
+            isExtending = false;
         }
         
     }
@@ -80,8 +84,8 @@ public class ArmJoystickControl extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-            isForwards = false;
-            isBackwards = false;
+            isRetracting = false;
+            isExtending = false;
             leftArm.disable();
             leftArm.stop();
             leftSolenoid.Lock();
@@ -93,8 +97,8 @@ public class ArmJoystickControl extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-            isForwards = false;
-            isBackwards = false;
+            isRetracting = false;
+            isExtending = false;
             leftArm.disable();
             leftArm.stop();
             leftSolenoid.Lock();
@@ -103,9 +107,9 @@ public class ArmJoystickControl extends CommandBase {
             rightSolenoid.Lock();
     }
     public boolean isLimitPressed(){
-        if ((leftArm.isRetracted() || rightArm.isRetracted()) && isForwards){
+        if ((leftArm.isRetracted() || rightArm.isRetracted()) && isRetracting){
            return true; 
-        } else if((leftArm.isExtended() || rightArm.isExtended()) && isBackwards) {
+        } else if((leftArm.isExtended() || rightArm.isExtended()) && isExtending) {
             return true;
         } else {
             return false;
