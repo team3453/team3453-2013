@@ -27,20 +27,23 @@ public class ClimberChassisJoystickControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(climberChassis.getAxisValue() >=.150){
-            climberChassis.Forward();
+        if(climberChassis.getAxisValue() <= -0.150){
             isForwards = true;
             isBackwards = false;
+            if(!isLimitPressed()) {
+                climberChassis.Forward();
+            }
         }
-        else if (climberChassis.getAxisValue() <=-.150) {
-            climberChassis.Back();
+        else if(climberChassis.getAxisValue() >= 0.150) {
             isForwards = false;
             isBackwards = true;
-        }
-        else{
-            climberChassis.Stop();
+            if(!isLimitPressed()) {
+                climberChassis.Back();
+            }
+        } else {
             isForwards = false;
             isBackwards = false;
+            climberChassis.Stop();
             
         }
     }

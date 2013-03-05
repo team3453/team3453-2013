@@ -12,7 +12,8 @@ import edu.tps.team3453.OI;
  */
 public class RightArmJoystickControl extends CommandBase {
     
-    private boolean isForwards, isBackwards;
+    private boolean isRetracting, isExtending;
+    private double yVal;
     
     public RightArmJoystickControl() {
         requires(leftArm);
@@ -26,31 +27,52 @@ public class RightArmJoystickControl extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        isForwards = false;
-        isBackwards = false;
+        isRetracting = false;
+        isExtending = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(OI.joystick2.getY() >=.150){
-            /*
-            rightArm.setSetpoint(-2000);
-            rightSolenoid.Unlock();
-            rightArm.enable();
-            */
-            rightArm.rightArmPull();
-            isForwards = true;
-            isBackwards = false;
-        }
-        else if (OI.joystick2.getY() <=-.150) {
+        yVal = OI.joystick2.getY();
+        
+        if(yVal >= 0.150){
             /*
             rightArm.setSetpoint(2000);
             rightSolenoid.Unlock();
             rightArm.enable();
             */
-            rightArm.rightArmReach();
-            isForwards = false;
-            isBackwards = true;
+            isRetracting = true;
+            isExtending = false;
+            if(!isLimitPressed()) {
+                if (yVal <= 0.3) {
+                    rightArm.setPullMin();
+                } else if (yVal <= 0.4) {
+                    rightArm.setPullLow();
+                } else if (yVal <= 0.5) {
+                    rightArm.setPullMidLow();
+                } else if (yVal <= 0.6) {
+                    rightArm.setPullMid();
+                } else if (yVal <= 0.7) {
+                    rightArm.setPullMidHigh();
+                } else if (yVal <= 0.8) {
+                    rightArm.setPullHigh();
+                } else {
+                    rightArm.setPullMax();
+                }                
+                rightArm.rightArmPull();
+            }
+        }
+        else if (yVal <= -0.150) {
+            /*
+            rightArm.setSetpoint(-2000);
+            rightSolenoid.Unlock();
+            rightArm.enable();
+            */
+            isRetracting = false;
+            isExtending = true;
+            if(!isLimitPressed()) {
+                rightArm.rightArmReach();
+            }
         }
         else{
             leftArm.disable();
@@ -59,8 +81,8 @@ public class RightArmJoystickControl extends CommandBase {
             rightArm.disable();
             rightArm.stop();
             rightSolenoid.Lock();
-            isForwards = false;
-            isBackwards = false;
+            isRetracting = false;
+            isExtending = false;
         }
         
     }
@@ -72,8 +94,8 @@ public class RightArmJoystickControl extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-            isForwards = false;
-            isBackwards = false;
+            isRetracting = false;
+            isExtending = false;
             leftArm.disable();
             leftArm.stop();
             leftSolenoid.Lock();
@@ -85,8 +107,8 @@ public class RightArmJoystickControl extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-            isForwards = false;
-            isBackwards = false;
+            isRetracting = false;
+            isExtending = false;
             leftArm.disable();
             leftArm.stop();
             leftSolenoid.Lock();
@@ -95,9 +117,9 @@ public class RightArmJoystickControl extends CommandBase {
             rightSolenoid.Lock();
     }
     public boolean isLimitPressed(){
-        if (( rightArm.isRetracted()) && isForwards){
+        if (( rightArm.isRetracted()) && isRetracting){
            return true; 
-        } else if(( rightArm.isExtended()) && isBackwards) {
+        } else if(( rightArm.isExtended()) && isExtending) {
             return true;
         } else {
             return false;

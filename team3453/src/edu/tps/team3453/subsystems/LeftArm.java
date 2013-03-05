@@ -40,6 +40,16 @@ public class LeftArm extends PIDSubsystem {
     private static int     rateArrayIndex = -1;
     private static boolean firstTimeRate = true;
     
+    private static final double pullMax =     -0.7;
+    private static final double pullHigh =    -0.6;
+    private static final double pullMidHigh = -0.55;
+    private static final double pullMid =     -0.5;
+    private static final double pullMidLow =  -0.45;
+    private static final double pullLow =     -0.35;
+    private static final double pullMin =     -0.30;
+    
+    private static double currentPull = -0.30;
+        
     // Initialize your subsystem here
     public LeftArm() {
         super("LeftArm", Kp, Ki, Kd, Kf);
@@ -121,7 +131,7 @@ public class LeftArm extends PIDSubsystem {
     }
     public void leftArmPull(){
         // increased from -0.3 to -0.6
-        leftArm.set(-0.6);
+        leftArm.set(currentPull);
     }
     public void stop(){
         disable();
@@ -171,6 +181,28 @@ public class LeftArm extends PIDSubsystem {
     
     public void checkRate() {
         
+    }
+    
+    public void setPullMin() {
+        currentPull = pullMin;
+    }
+    public void setPullLow() {
+        currentPull = pullLow;
+    }
+    public void setPullMidLow() {
+        currentPull = pullMidLow;
+    }
+    public void setPullMid() {
+        currentPull = pullMid;
+    }
+    public void setPullMidHigh() {
+        currentPull = pullMidHigh;
+    }
+    public void setPullHigh() {
+        currentPull = pullHigh;
+    }
+    public void setPullMax() {
+        currentPull = pullMax;
     }
     
 }
