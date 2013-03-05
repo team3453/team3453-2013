@@ -8,12 +8,15 @@
 package edu.tps.team3453;
 
 
+import edu.tps.team3453.commands.CommandBase;
+import edu.tps.team3453.commands.DriveTeleop;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.tps.team3453.commands.CommandBase;
+
 import edu.tps.team3453.commands.AutonomousDrive;
 import edu.tps.team3453.commands.AutoDriveFreeFwd;
 
@@ -28,7 +31,7 @@ import edu.tps.team3453.commands.AutoDriveFreeFwd;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
-
+    Command teleopCommand;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -36,7 +39,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         // instantiate the command used for the autonomous period
         autonomousCommand = new AutonomousDrive(14400);
-
+        teleopCommand = new DriveTeleop();
         // Initialize all subsystems
         CommandBase.init();
     }
@@ -58,9 +61,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
-        SmartDashboard.putData(new AutonomousDrive(14400));
-        SmartDashboard.putData(new AutoDriveFreeFwd(14400));        
+        teleopCommand.start();
     }
 
     /**

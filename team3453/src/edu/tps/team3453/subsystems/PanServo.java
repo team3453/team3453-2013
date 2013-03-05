@@ -4,10 +4,13 @@
  */
 package edu.tps.team3453.subsystems;
 
+import edu.tps.team3453.OI;
 import edu.tps.team3453.RobotMap;
+import edu.tps.team3453.RobotValues;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.tps.team3453.commands.PanServoDoNothing;
 
 /**
  *
@@ -21,24 +24,31 @@ public class PanServo extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new PanServoDoNothing());
     }
     public void panServoDoNothing(){
-        servo.set(0);
+        //servo.set(0);
     }
     public void panWhileOn(){
-        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
-        servo.set(1);
+        servo.set(RobotValues.cameraPanServoOnPyramidAngle);
+        SmartDashboard.putNumber("PanServo Degrees", servo.get());
     }
     public void panApproach(){
-        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
-        servo.set(1);
+        servo.set(RobotValues.cameraPanServoPyramidApproachAngle);
+        SmartDashboard.putNumber("PanServo Degrees", servo.get());
     }
-    public void panServoClockwise() {
-        servo.setAngle(servo.getAngle() + 2.0);
-        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
+    public void panServoClockwise(){
+        //servo.set(1);
+        servo.setAngle(servo.getAngle() + 1.0);
+        SmartDashboard.putNumber("PanServo Degrees", servo.getAngle());
     }
-    public void panServoCounterclockwise() {
-        servo.setAngle(servo.getAngle() - 2.0);
-        SmartDashboard.putNumber("PanServoDegrees", servo.getAngle());
+    public void panServoCounterClockwise(){
+        //servo.set(-1);
+        servo.setAngle(servo.getAngle() - 1.0);
+        SmartDashboard.putNumber("PanServo Degrees", servo.getAngle());
     }
+    public double getJoystickValueX(){
+        return OI.joystick.getX();
+        
+        }
 }
