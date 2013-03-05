@@ -12,6 +12,7 @@ public class RearWheelRetract extends CommandBase {
     
     public RearWheelRetract() {
         requires(rearWheel);
+        setTimeout(5.0);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -23,11 +24,12 @@ public class RearWheelRetract extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         rearWheel.retract();
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isRetracted();
     }
 
     // Called once after isFinished returns true
@@ -38,4 +40,11 @@ public class RearWheelRetract extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+     private boolean isRetracted() {
+        if (rearWheel.isHit() || isTimedOut() || rearWheel.isHit()){
+            return true;
+        }else {
+            return false;
+}
+     }
 }

@@ -5,7 +5,7 @@
 package edu.tps.team3453.subsystems;
 
 import edu.tps.team3453.RobotMap;
-import edu.tps.team3453.commands.SolenoidLock;
+import edu.tps.team3453.commands.RightSolenoidLock;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -20,12 +20,12 @@ public class RightSolenoid extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-        setDefaultCommand(new SolenoidLock());
+        setDefaultCommand(new RightSolenoidLock());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
     public void Unlock(){
-        rightSolenoid.set(Relay.Value.kOn);
+        rightSolenoid.set(Relay.Value.kForward);
     }
     public void Lock(){
         rightSolenoid.set(Relay.Value.kOff);
