@@ -22,11 +22,11 @@ public class LeftArm extends PIDSubsystem {
     private static final double Kp = 0.0;
     private static final double Ki = 0.0;
     private static final double Kd = 0.0;
-    private static final double Kf = 0.2;
+    private static final double Kf = 0.0;
     
     private static double KoutMin = 0.2;
     private static double KoutMax = 0.25;
-    private static double Ksetpoint = 550;
+    private static double Ksetpoint = 0; //550;
     
     private static final SpeedController leftArm = new Victor(RobotMap.leftArm);
     private static final DigitalInput limitSwitchLeftArmReach = new DigitalInput(2, RobotMap.limitSwitchLeftArmReach);

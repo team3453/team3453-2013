@@ -66,7 +66,7 @@ public class ClimberChassisJoystickControl extends CommandBase {
             isBackwards = false;
     }
     public boolean isLimitPressed() {
-        if ((climberChassis.isExtended() || rearWheel.isHit()) && isForwards) {
+        if ( rearWheel.isHit() && isForwards) {
             return true;
         } else if(climberChassis.isRetracted() && isBackwards) {
             return true;
