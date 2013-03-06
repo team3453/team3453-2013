@@ -42,8 +42,8 @@ public class KillSwitch extends CommandBase {
 
             leftArm.stop();
             rightArm.stop();
-            leftArm.disable();
-            rightArm.disable();
+            //leftArm.disable();
+            //rightArm.disable();
             leftSolenoid.Lock();
             rightSolenoid.Lock();
 
