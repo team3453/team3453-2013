@@ -3,7 +3,7 @@ package edu.tps.team3453;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name.
- * Window Motor- kForward= clockwise, kReverse= counterclockwise
+ * Window Motor- kForward= counterclockwise, kReverse= clockwise
  */
 public class RobotMap {
     // For example to map the left and right motors, you could define the
@@ -27,7 +27,7 @@ public class RobotMap {
     public static final int rightDriveEncoderB = 6;
     public static final int closeLidLimitSwitch = 1;
     public static final int openLidLimitSwitch = 2;
-    public static final int climberChassisExtendLimitSwitch = 3;
+    //public static final int climberChassisExtendLimitSwitch = 3;
     public static final int climberChassisRetractLimitSwitch = 4;
     
     //public static final int testLimitSwitch = 10;
