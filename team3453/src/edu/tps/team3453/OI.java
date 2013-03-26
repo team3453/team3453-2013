@@ -49,6 +49,7 @@ import edu.tps.team3453.commands.TiltServoCounterClockwise;
 import edu.tps.team3453.commands.TestLimitSwitchTesting;
 import edu.tps.team3453.commands.RearWheelJoystickControl;
 import edu.tps.team3453.commands.RightArmJoystickControl;
+import edu.tps.team3453.commands.goAtLimit;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -98,8 +99,9 @@ public class OI {
         b3.whenPressed(new KillSwitch());
         b4.whenPressed(new DriveTeleop());
         b5.whenPressed(new LeftCameraFreeControl());
+        b6.whenPressed(new goAtLimit());
         //Joystick Axis- Forward= negative, Backwards= positive for attack3 and extreme3DPro
-       
+        
         // Operator - Joystick 2
         // Arm Control
         // Right Camera Free Control

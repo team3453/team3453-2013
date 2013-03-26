@@ -17,7 +17,7 @@ public class LeftArmJoystickControl extends CommandBase {
     
     public LeftArmJoystickControl() {
         requires(leftArm);
-        requires(leftSolenoid);
+        //requires(leftSolenoid);
         requires(rightJoystickToken);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -31,6 +31,8 @@ public class LeftArmJoystickControl extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        yVal = OI.joystick2.getY();
+        
         if(yVal >= 0.150){
             /*
             leftArm.setSetpoint(-2000);
@@ -72,12 +74,15 @@ public class LeftArmJoystickControl extends CommandBase {
             }
         }
         else{
-            leftArm.disable();
+            //leftArm.disable();
             leftArm.stop();
-            leftSolenoid.Lock();
+            //leftSolenoid.Lock();
             isRetracting = false;
             isExtending = false;
         }
+        
+        isRetracting = false;
+        isExtending = false;
         
     }
 
@@ -90,9 +95,9 @@ public class LeftArmJoystickControl extends CommandBase {
     protected void end() {
             isRetracting = false;
             isExtending = false;
-            leftArm.disable();
+            //leftArm.disable();
             leftArm.stop();
-            leftSolenoid.Lock();
+            //leftSolenoid.Lock();
     }
 
     // Called when another command which requires one or more of the same
@@ -100,11 +105,13 @@ public class LeftArmJoystickControl extends CommandBase {
     protected void interrupted() {
             isRetracting = false;
             isExtending = false;
-            leftArm.disable();
+            //eftArm.disable();
             leftArm.stop();
-            leftSolenoid.Lock();
+            //leftSolenoid.Lock();
     }
     public boolean isLimitPressed() {
+        leftArm.updateStatus();
+        //return false;
         if ((leftArm.isRetracted()) && isRetracting){
            return true; 
         } else if((leftArm.isExtended()) && isExtending) {
@@ -112,6 +119,6 @@ public class LeftArmJoystickControl extends CommandBase {
         } else {
             return false;
         }
-            
+        
     }
 }

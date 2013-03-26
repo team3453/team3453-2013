@@ -18,8 +18,8 @@ public class ArmJoystickControl extends CommandBase {
     public ArmJoystickControl() {
         requires(leftArm);
         requires(rightArm);
-        requires(leftSolenoid);
-        requires(rightSolenoid);
+        //requires(leftSolenoid);
+        //requires(rightSolenoid);
         requires(rightJoystickToken);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -35,6 +35,7 @@ public class ArmJoystickControl extends CommandBase {
     protected void execute() {
         yVal = OI.joystick2.getY();
         
+        //Joystick Axis- Forward= negative, Backwards= positive for attack3 and extreme3DPro
         if(yVal >= .150){
             /*
             leftArm.setSetpoint(-2000);
@@ -65,9 +66,12 @@ public class ArmJoystickControl extends CommandBase {
                 } else if (yVal <= 0.8) {
                     leftArm.setPullHigh();
                     rightArm.setPullHigh();
-                } else {
+                } else if (yVal < 1.0) {
                     leftArm.setPullMax();
                     rightArm.setPullMax();
+                } else {
+                    leftArm.setMaxPullMax();
+                    rightArm.setMaxPullMax();
                 }
                 leftArm.leftArmPull();
                 rightArm.rightArmPull();
@@ -80,25 +84,31 @@ public class ArmJoystickControl extends CommandBase {
             leftSolenoid.Unlock();
             leftArm.enable();
             rightSolenoid.Unlock();
+            * 
             rightArm.enable();
             */
+            
             isRetracting = false;
             isExtending = true;
+            
             if(!isLimitPressed()) {
                 leftArm.leftArmReach();
                 rightArm.rightArmReach();
             }
         }
         else{
-            leftArm.disable();
+            //leftArm.disable();
             leftArm.stop();
-            leftSolenoid.Lock();
-            rightArm.disable();
+            //leftSolenoid.Lock();
+            //rightArm.disable();
             rightArm.stop();
-            rightSolenoid.Lock();
+            //rightSolenoid.Lock();
             isRetracting = false;
             isExtending = false;
         }
+        
+        isRetracting = false;
+        isExtending = false;
         
     }
 
@@ -111,12 +121,12 @@ public class ArmJoystickControl extends CommandBase {
     protected void end() {
             isRetracting = false;
             isExtending = false;
-            leftArm.disable();
+            //leftArm.disable();
             leftArm.stop();
-            leftSolenoid.Lock();
-            rightArm.disable();
+            //leftSolenoid.Lock();
+            //rightArm.disable();
             rightArm.stop();
-            rightSolenoid.Lock();
+            //rightSolenoid.Lock();
     }
 
     // Called when another command which requires one or more of the same
@@ -124,21 +134,57 @@ public class ArmJoystickControl extends CommandBase {
     protected void interrupted() {
             isRetracting = false;
             isExtending = false;
-            leftArm.disable();
+            //leftArm.disable();
             leftArm.stop();
-            leftSolenoid.Lock();
-            rightArm.disable();
+            //leftSolenoid.Lock();
+            //rightArm.disable();
             rightArm.stop();
-            rightSolenoid.Lock();
+            //rightSolenoid.Lock();
     }
     public boolean isLimitPressed(){
-        if ((leftArm.isRetracted() || rightArm.isRetracted()) && isRetracting){
-           return true; 
-        } else if((leftArm.isExtended() || rightArm.isExtended()) && isExtending) {
-            return true;
-        } else {
-            return false;
+        
+       if ((leftArm.isRetracted() || rightArm.isRetracted()) && isRetracting){
+           
+           System.out.println("============ in isRetracting ==========");
+           System.out.println("isLimitPressed returning true");
+           
+           System.out.println("leftArm.isExtended "+leftArm.isExtended());
+           System.out.println("leftArm.isRetracted "+leftArm.isRetracted());
+           
+           System.out.println("rightArm.isExtended "+rightArm.isExtended());
+           System.out.println("rightArm.isRetracted "+rightArm.isRetracted());
+           
+           System.out.println("isExtending "+isExtending);
+           System.out.println("isRetracting "+isRetracting);
+           
+           
+         //  return true; 
         }
+  
+       if ((leftArm.isExtended() || rightArm.isExtended()) && isExtending){
+           
+           System.out.println("============ in isExtending ==========");
+           System.out.println("isLimitPressed returning true");
+           
+           System.out.println("leftArm.isExtended "+leftArm.isExtended());
+           System.out.println("leftArm.isRetracted "+leftArm.isRetracted());
+           
+           System.out.println("rightArm.isExtended "+rightArm.isExtended());
+           System.out.println("rightArm.isRetracted "+rightArm.isRetracted());
+           
+           System.out.println("isExtending "+isExtending);
+           System.out.println("isRetracting "+isRetracting);
+           
+           
+         //  return true; 
+        }
+       
+       
+         /*else if((leftArm.isExtended()) && isExtending) {
+   //         return true;
+     //   } else { */
+            return false;
+        //}
             
     }
 }

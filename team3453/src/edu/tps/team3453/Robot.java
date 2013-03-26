@@ -30,7 +30,7 @@ import edu.tps.team3453.commands.AutoDriveFreeFwd;
  */
 public class Robot extends IterativeRobot {
 
-    Command autonomousCommand;
+    //Command autonomousCommand;
     Command teleopCommand;
     /**
      * This function is run when the robot is first started up and should be
@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
         // instantiate the command used for the autonomous period
-        autonomousCommand = new AutonomousDrive(14400);
+        //autonomousCommand = new AutonomousDrive(14400);
         teleopCommand = new DriveTeleop();
         // Initialize all subsystems
         CommandBase.init();
@@ -46,14 +46,14 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        autonomousCommand.start();
+        //autonomousCommand.start();
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+        //Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
