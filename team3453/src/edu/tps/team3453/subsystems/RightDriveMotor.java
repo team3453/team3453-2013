@@ -95,4 +95,11 @@ public class RightDriveMotor extends PIDSubsystem {
         SmartDashboard.putNumber("Right Enc rate ", rightEncoder.getRate());
         
     }    
+    
+    public void goAtLimit() {
+        rightMotor.set(-.2);
+    }
+    public void goAtInverseLimit() {
+        rightMotor.set(.2);
+    }
 }

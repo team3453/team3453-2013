@@ -1,39 +1,38 @@
+
+import edu.tps.team3453.commands.CommandBase;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.tps.team3453.commands;
 
 /**
  *
  * @author admin
  */
-public class RightArmDown5 extends CommandBase {
+public class goAtLimit extends CommandBase {
     
-    boolean runOnce = false;
-    
-    public RightArmDown5() {
-        requires(rightArm);
-        setTimeout(5.0);
+    public goAtLimit() {
+        requires(rightDriveMotor);
+        requires(leftDriveMotor);
+        requires(leftJoystickToken);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-//        rightArm.down5();
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        runOnce = true;
+        rightDriveMotor.goAtLimit();
+        leftDriveMotor.goAtLimit();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return runOnce;
-        //return isTimedOut();
+        return false;
     }
 
     // Called once after isFinished returns true

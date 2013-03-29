@@ -32,6 +32,9 @@ public class ClimberChassisJoystickControl extends CommandBase {
             isBackwards = false;
             if(!isLimitPressed()) {
                 climberChassis.Forward();
+                System.out.println("Forwards");
+            } else {
+                System.out.println(" Fore LS Pressed");
             }
         }
         else if(climberChassis.getAxisValue() >= 0.150) {
@@ -39,6 +42,9 @@ public class ClimberChassisJoystickControl extends CommandBase {
             isBackwards = true;
             if(!isLimitPressed()) {
                 climberChassis.Back();
+                System.out.println("Backwards");
+            } else {
+                System.out.println("Back LS Pressed");
             }
         } else {
             isForwards = false;

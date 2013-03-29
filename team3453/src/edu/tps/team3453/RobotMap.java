@@ -16,7 +16,9 @@ public class RobotMap {
     public static final int leftDriveMotor = 4;
     public static final int rightDriveMotor = 5;
     public static final int rightArm = 6;
-    public static final int leftArm = 7;
+    public static final int rightArmB = 7;
+    public static final int leftArm = 8;
+    public static final int leftArmB = 9;
     
      //   leftEncoder = new Encoder(7,8);
      //   rightEncoder = new Encoder(5,6);
@@ -42,8 +44,8 @@ public class RobotMap {
     public static final int limitSwitchLeftArmPull = 4;
     public static final int limitSwitchRightArmReach = 5;
     public static final int limitSwitchRightArmPull = 6;
-    public static final int limitSwitchDumperUp = 7;
-    public static final int limitSwitchDumperDown = 8;
+    public static final int limitSwitchDumperUp = 9;
+    public static final int limitSwitchDumperDown = 10;
     
     public static final int rightArmEncoderA = 11;
     public static final int rightArmEncoderB = 12;

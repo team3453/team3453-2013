@@ -21,7 +21,7 @@ public class LeftArmDown5 extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        leftArm.down5();
+//        leftArm.down5();
     }
 
     // Called repeatedly when this Command is scheduled to run
