@@ -94,12 +94,12 @@ public class OI {
         // TeleOp Drive
         // Left Camera Free Control
         // KillSwitch
-        b1.whenPressed(new CameraPyramidApproach());
-        b2.whenPressed(new KillSwitch());
-        b3.whenPressed(new KillSwitch());
+        //b1.whenPressed(new CameraPyramidApproach());
+        //b2.whenPressed(new KillSwitch());
+        //b3.whenPressed(new KillSwitch());
         b4.whenPressed(new DriveTeleop());
         b5.whenPressed(new LeftCameraFreeControl());
-        b6.whenPressed(new goAtLimit());
+        //b6.whenPressed(new goAtLimit());
         //Joystick Axis- Forward= negative, Backwards= positive for attack3 and extreme3DPro
         
         // Operator - Joystick 2
@@ -114,9 +114,9 @@ public class OI {
         // Camera Pyramid
         // Dumper
         // Lid 
-        joystick2b1.whenPressed(new CameraWhileOnPyramid());
-        joystick2b2.whenPressed(new KillSwitch());
-        joystick2b3.whenPressed(new KillSwitch());
+        //joystick2b1.whenPressed(new CameraWhileOnPyramid());
+        //joystick2b2.whenPressed(new KillSwitch());
+        //joystick2b3.whenPressed(new KillSwitch());
         joystick2b4.whenPressed(new ArmJoystickControl());
         joystick2b5.whenPressed(new RightCameraFreeControl());
         joystick2b6.whenPressed(new ClimberChassisJoystickControl());

@@ -14,6 +14,7 @@ public class ArmJoystickControl extends CommandBase {
     
     private boolean isRetracting, isExtending;
     private double yVal;
+    private boolean killit;
     
     public ArmJoystickControl() {
         requires(leftArm);
@@ -29,11 +30,37 @@ public class ArmJoystickControl extends CommandBase {
     protected void initialize() {
         isRetracting = false;
         isExtending = false;
+        killit = false;
+        System.out.println("============ ======================= ==========");
+        System.out.println("============ in ArmJoystickControl ==========");
+        System.out.println("============ ======================= ==========");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        /*
+        if (isLimitPressed()) {
+            System.out.println("============ ======================= ==========");
+            System.out.println("============ ======================= ==========");
+            System.out.println("============ set kill it true ==========");
+            System.out.println("============ ======================= ==========");
+            System.out.println("============ ======================= ==========");
+            killit = true;
+            end();
+            return;
+        } */
+        if (killit) {
+            System.out.println("============ ======================= ==========");
+            System.out.println("============ ======================= ==========");
+            System.out.println("============ encountered kill it true ==========");
+            System.out.println("============ ======================= ==========");
+            System.out.println("============ ======================= ==========");
+  
+            end();
+            return;
+        }
         yVal = OI.joystick2.getY();
+
         
         //Joystick Axis- Forward= negative, Backwards= positive for attack3 and extreme3DPro
         if(yVal >= .150){
@@ -114,11 +141,14 @@ public class ArmJoystickControl extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isLimitPressed();
+        return killit;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        System.out.println("============ ======================= ==========");
+        System.out.println("============ ending ArmJoystickControl ==========");
+        System.out.println("============ ======================= ==========");
             isRetracting = false;
             isExtending = false;
             //leftArm.disable();
@@ -157,11 +187,10 @@ public class ArmJoystickControl extends CommandBase {
            System.out.println("isExtending "+isExtending);
            System.out.println("isRetracting "+isRetracting);
            
+           killit = true;
+           return true; 
            
-         //  return true; 
-        }
-  
-       if ((leftArm.isExtended() || rightArm.isExtended()) && isExtending){
+       } else if ((leftArm.isExtended() || rightArm.isExtended()) && isExtending){
            
            System.out.println("============ in isExtending ==========");
            System.out.println("isLimitPressed returning true");
@@ -175,16 +204,16 @@ public class ArmJoystickControl extends CommandBase {
            System.out.println("isExtending "+isExtending);
            System.out.println("isRetracting "+isRetracting);
            
-           
-         //  return true; 
-        }
+           killit = true;
+           return true; 
+        } else {
        
        
          /*else if((leftArm.isExtended()) && isExtending) {
    //         return true;
      //   } else { */
-            return false;
-        //}
+          return false;
+        }
             
     }
 }
