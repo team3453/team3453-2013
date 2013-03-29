@@ -143,4 +143,11 @@ public class LeftDriveMotor extends PIDSubsystem {
             currentOutput = -1.0;
         }
     }
+    
+    public void goAtLimit() {
+        leftMotor.set(.2);
+    }
+    public void goAtInverseLimit() {
+        leftMotor.set(-.2);
+    }
 }

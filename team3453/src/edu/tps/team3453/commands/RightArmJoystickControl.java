@@ -16,10 +16,10 @@ public class RightArmJoystickControl extends CommandBase {
     private double yVal;
     
     public RightArmJoystickControl() {
-        requires(leftArm);
+        //requires(leftArm);
         requires(rightArm);
-        requires(leftSolenoid);
-        requires(rightSolenoid);
+        //requires(leftSolenoid);
+        //requires(rightSolenoid);
         requires(rightJoystickToken);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -75,15 +75,18 @@ public class RightArmJoystickControl extends CommandBase {
             }
         }
         else{
-            leftArm.disable();
-            leftArm.stop();
-            leftSolenoid.Lock();
-            rightArm.disable();
+            //leftArm.disable();
+            //leftArm.stop();
+            //leftSolenoid.Lock();
+            //rightArm.disable();
             rightArm.stop();
-            rightSolenoid.Lock();
+            //rightSolenoid.Lock();
             isRetracting = false;
             isExtending = false;
         }
+        
+        isRetracting = false;
+        isExtending = false;
         
     }
 
@@ -96,12 +99,12 @@ public class RightArmJoystickControl extends CommandBase {
     protected void end() {
             isRetracting = false;
             isExtending = false;
-            leftArm.disable();
-            leftArm.stop();
-            leftSolenoid.Lock();
-            rightArm.disable();
+            //leftArm.disable();
+            //leftArm.stop();
+            //leftSolenoid.Lock();
+            //rightArm.disable();
             rightArm.stop();
-            rightSolenoid.Lock();
+            //rightSolenoid.Lock();
     }
 
     // Called when another command which requires one or more of the same
@@ -109,14 +112,17 @@ public class RightArmJoystickControl extends CommandBase {
     protected void interrupted() {
             isRetracting = false;
             isExtending = false;
-            leftArm.disable();
-            leftArm.stop();
-            leftSolenoid.Lock();
-            rightArm.disable();
+            //leftArm.disable();
+            //leftArm.stop();
+            //leftSolenoid.Lock();
+            //rightArm.disable();
+            
             rightArm.stop();
-            rightSolenoid.Lock();
+            //rightSolenoid.Lock();
     }
     public boolean isLimitPressed(){
+        rightArm.updateStatus();
+        //return false;
         if (( rightArm.isRetracted()) && isRetracting){
            return true; 
         } else if(( rightArm.isExtended()) && isExtending) {
@@ -124,6 +130,6 @@ public class RightArmJoystickControl extends CommandBase {
         } else {
             return false;
         }
-            
+           
     }
 }
